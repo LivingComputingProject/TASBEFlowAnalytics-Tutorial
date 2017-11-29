@@ -27,7 +27,7 @@ function [statisticsFile, histogramFile] = serializeBatchOutput(file_pairs, CM, 
     statisticsFile = writeStatisticsCsv(numConditions, channels, sampleIds, binCounts, geoMeans, geoStdDev, pathToOutputFiles);
     
     % Formats and writes the output to the Histogram file.
-    %histogramFile = writeHistogramCsv(numConditions, channels, sampleIds, binCounts, binCenters, pathToOutputFiles);
+    histogramFile = writeHistogramCsv(numConditions, channels, sampleIds, binCounts, binCenters, pathToOutputFiles);
     
     % Write the data points to a file (without headers for now). This is 
     %  just a wrapper around readfcs_compensated_ERF. It returns
