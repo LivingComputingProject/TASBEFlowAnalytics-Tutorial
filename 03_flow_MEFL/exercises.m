@@ -69,7 +69,6 @@ colorpairfiles{2} = {channels{2}, channels{3}, channels{1}, [colordata '2012-03-
 colorpairfiles{3} = {channels{2}, channels{1}, channels{3}, [colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs']};
 
 CM = ColorModel(beadfile, blankfile, channels, colorfiles, colorpairfiles);
-settings = TASBESettings();
 CM = set_ERF_channel_name(CM, 'FITC-A'); % Name the channel we'll use for ERF units
 CM=set_dequantization(CM, 1); % important at low levels
 CM=set_bead_plot(CM, 2); % 2 = show beads for all channels, even though only FITC will be used
@@ -78,7 +77,7 @@ CM=set_bead_min(CM, 1); % Don't consider beads less than this amount
 CM=set_translation_plot(CM, true); 
 CM=set_translation_channel_min(CM,[2,2,2]);
 % and build it!
-CM = resolve(CM,settings);
+CM = resolve(CM);
 
 % Let's take a look at the "bead-calibration-C" graphs
 % Each one is a 1D histogram, with automatic identification of the peaks (red lines)
@@ -98,7 +97,7 @@ CM = resolve(CM,settings);
 
 CM=set_bead_min(CM, 2); % Don't consider beads less than this amount
 CM=set_bead_peak_threshold(CM, 200); % override default peak threshold
-CM = resolve(CM,settings);
+CM = resolve(CM);
 
 % We get a new warning: "Warning: Only one bead peak found, assuming brightest"
 % This is because the FITC channel is tuned for such bright fluorescence
