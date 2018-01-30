@@ -47,7 +47,6 @@ batch_description = {...
 
 % Execute the actual analysis
 TASBEConfig.set('OS.DeviceName',device_name);
-TASBEConfig.set('OS.Directory','plots/');
 results = process_plusminus_batch( CM, batch_description, AP);
 
 % Make additional output plots
