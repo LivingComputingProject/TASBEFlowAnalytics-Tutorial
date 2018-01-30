@@ -55,14 +55,20 @@ sampleresults = process_data(CM,experiment,AP);
 results = summarize_data(CM,experiment,AP,sampleresults);
 
 % Make output plots
-OS = OutputSettings('Fine',device_name,'','plots');
-OSind = OutputSettings('Fine',inducer_name,'','plots');
+TASBEConfig.set('OS.StemName','Fine');
+TASBEConfig.set('OS.Directory','plots');
+
 % Plot how the constitutive fluorescence was distributed
-plot_bin_statistics(sampleresults,OS);
+TASBEConfig.set('OS.DeviceName',device_name);
+plot_bin_statistics(sampleresults);
+
 % Plot the relation between inducer and input fluorescence
-plot_inducer_characterization(results,OSind);
+TASBEConfig.set('OS.DeviceName',inducer_name);
+plot_inducer_characterization(results);
+
 % Plot the relation between input and output fluorescence
-plot_IO_characterization(results,OS);
+TASBEConfig.set('OS.DeviceName',device_name);
+plot_IO_characterization(results);
 
 % Save the results of computation
 save('-V7','LacI-CAGop-Fine.mat','experiment','AP','sampleresults','results');
