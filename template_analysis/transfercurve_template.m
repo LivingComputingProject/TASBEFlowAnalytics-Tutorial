@@ -56,7 +56,6 @@ results = summarize_data(CM,experiment,AP,sampleresults);
 
 % Make output plots
 TASBEConfig.set('OS.StemName','Fine');
-TASBEConfig.set('OS.Directory','plots');
 
 % Plot how the constitutive fluorescence was distributed
 TASBEConfig.set('OS.DeviceName',device_name);
