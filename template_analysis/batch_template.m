@@ -52,6 +52,6 @@ TASBEConfig.set('OS.StemName','LacI-CAGop');
 TASBEConfig.set('OS.FixedInputAxis',[1e4 1e10]);
 plot_batch_histograms(results,sampleresults,{'b','y','r'},CM);
 
-[statisticsFile, histogramFile] = serializeBatchOutput(file_pairs, CM, AP, sampleresults, 'LacI-CAGop-batch');
+[statisticsFile, histogramFile] = serializeBatchOutput(file_pairs, CM, AP, sampleresults);
 
 save('LacI-CAGop-batch.mat','AP','bins','file_pairs','results','sampleresults');
