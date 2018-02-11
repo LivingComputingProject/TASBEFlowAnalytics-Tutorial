@@ -71,7 +71,6 @@ colorpairfiles{3} = {channels{2}, channels{1}, channels{3}, [colordata '2012-03-
 CM = ColorModel(beadfile, blankfile, channels, colorfiles, colorpairfiles);
 CM = set_ERF_channel_name(CM, 'FITC-A'); % Name the channel we'll use for ERF units
 CM=set_dequantization(CM, 1); % important at low levels
-CM=set_bead_plot(CM, 2); % 2 = show beads for all channels, even though only FITC will be used
 CM=set_bead_min(CM, 1); % Don't consider beads less than this amount
 % Things we'll talk about in the next section...
 CM=set_translation_plot(CM, true); 

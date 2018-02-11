@@ -47,7 +47,6 @@ colorpairfiles{1} = {channels{1}, channels{2}, channels{3}, [stem0312 'mkate_EBF
 colorpairfiles{2} = {channels{1}, channels{3}, channels{2}, [stem0312 'mkate_EBFP2_EYFP_P3.fcs']};
 
 CM = ColorModel(beadfile, blankfile, channels, colorfiles, colorpairfiles);
-CM=set_bead_plot(CM, 2); % 2 = detailed plots; 1 = minimal plot; 0 = no plot
 CM=set_translation_plot(CM, true);
 CM=set_noise_plot(CM, true);
 
