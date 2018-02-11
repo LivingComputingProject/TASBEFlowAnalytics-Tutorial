@@ -65,7 +65,7 @@ CM=set_ERF_channel_name(CM, 'FITC-A');
 CM=set_translation_channel_min(CM,[2,2,2]);
 
 % When dealing with very strong fluorescence, use secondary channel to segment
-%settings = setSetting(settings,'SecondaryBeadChannel','PE-Texas_Red-A');
+% TASBEConfig.set('SecondaryBeadChannel','PE-Tx-Red-YG-A');
 CM = add_filter(CM,autogate);
 
 % Execute and save the model
