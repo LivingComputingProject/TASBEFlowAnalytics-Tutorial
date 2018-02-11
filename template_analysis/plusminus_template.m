@@ -53,7 +53,6 @@ results = process_plusminus_batch( CM, batch_description, AP);
 for i=1:numel(results)
     TASBEConfig.set('OS.StemName',batch_description{i}{1});
     TASBEConfig.set('OS.DeviceName',device_name);
-    TASBEConfig.set('OS.Directory','plots/');
     TASBEConfig.set('OS.PlotTickMarks',1);
     plot_plusminus_comparison(results{i})
 end
