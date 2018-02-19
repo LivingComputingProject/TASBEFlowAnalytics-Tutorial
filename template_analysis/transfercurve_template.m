@@ -55,18 +55,18 @@ sampleresults = process_data(CM,experiment,AP);
 results = summarize_data(CM,experiment,AP,sampleresults);
 
 % Make output plots
-TASBEConfig.set('OS.StemName','Fine');
+TASBEConfig.set('OutputSettings.StemName','Fine');
 
 % Plot how the constitutive fluorescence was distributed
-TASBEConfig.set('OS.DeviceName',device_name);
+TASBEConfig.set('OutputSettings.DeviceName',device_name);
 plot_bin_statistics(sampleresults);
 
 % Plot the relation between inducer and input fluorescence
-TASBEConfig.set('OS.DeviceName',inducer_name);
+TASBEConfig.set('OutputSettings.DeviceName',inducer_name);
 plot_inducer_characterization(results);
 
 % Plot the relation between input and output fluorescence
-TASBEConfig.set('OS.DeviceName',device_name);
+TASBEConfig.set('OutputSettings.DeviceName',device_name);
 plot_IO_characterization(results);
 
 % Save the results of computation
