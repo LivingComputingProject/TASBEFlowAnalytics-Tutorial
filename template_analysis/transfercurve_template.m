@@ -1,5 +1,6 @@
 % This template shows how to perform parametric analysis of a transient
 % transfection transfer curve
+TASBEConfig.checkpoint('init');
 
 % load the color model
 load('../template_colormodel/CM120312.mat');

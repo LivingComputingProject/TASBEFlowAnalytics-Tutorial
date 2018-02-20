@@ -1,5 +1,6 @@
 % This template shows how to perform a simple batch analysis of a set of conditions
 % Each color is analyzed independently
+TASBEConfig.checkpoint('init');
 
 % load the color model
 load('../template_colormodel/CM120312.mat');
