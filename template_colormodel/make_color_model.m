@@ -52,7 +52,9 @@ CM=set_noise_plot(CM, true);
 
 TASBEConfig.set('beads.beadModel','SpheroTech RCP-30-5A'); % Entry from BeadCatalog.xls matching your beads
 TASBEConfig.set('beads.beadBatch','Lot AA01, AA02, AA03, AA04, AB01, AB02, AC01, GAA01-R'); % Entry from BeadCatalog.xls containing your lot
-% Can also set beads.beadChannel if, for some reason, you don't want to use fluorescein as standard
+% Can also set bead channel if, for some reason, you don't want to use fluorescein as standard
+% This defaults to FITC as it is strongly recommended to use fluorescein standards.
+% TASBEConfig.set('beadChannel','FITC');
 
 % Ignore all bead data below 10^[rangeMin] as being too "smeared" with noise
 TASBEConfig.set('beads.rangeMin', 2);

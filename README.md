@@ -4,6 +4,18 @@ This is a tutorial for how to use the TASBE Flow Analytics package.
 Example code in this tutorial is distributed, insofar as possible, in
 the public domain.
 
+**If you make use of the TASBE Flow Analytics package, please cite
+the following two publications:**
+
+* Jacob Beal, "Bridging the Gap: A Roadmap to Breaking the Biological
+  Design Barrier," Frontiers in Bioengineering and Biotechnology,
+  2:87. doi:10.3389/fbioe.2014.00087, January 2015.
+
+* Jacob Beal, Ron Weiss, Fusun Yaman, Noah Davidsohn, and Aaron Adler,
+  "A Method for Fast, High- Precision Characterization of Synthetic
+  Biology Devices," MIT CSAIL Tech Report 2012-008, April 2012. 
+  http://hdl.handle.net/1721.1/69973
+  
 # Organization
 
 The material in this tutorial is organized into three collections:
