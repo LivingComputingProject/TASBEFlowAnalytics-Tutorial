@@ -1,5 +1,6 @@
 % This template shows how to perform a simple batch analysis of a set of conditions
 % Each color is analyzed independently
+TASBEConfig.checkpoint('init');
 
 % load the color model
 load('../template_colormodel/CM120312.mat');
@@ -48,24 +49,10 @@ n_conditions = size(file_pairs,1);
 [results sampleresults] = per_color_constitutive_analysis(CM,file_pairs,{'EBFP2','EYFP','mKate'},AP);
 
 % Make output plots
-TASBEConfig.set('OS.StemName','LacI-CAGop');
-TASBEConfig.set('OS.FixedInputAxis',[1e4 1e10]);
+TASBEConfig.set('OutputSettings.StemName','LacI-CAGop');
+TASBEConfig.set('OutputSettings.FixedInputAxis',[1e4 1e10]);
 plot_batch_histograms(results,sampleresults,{'b','y','r'},CM);
 
-[statisticsFile, histogramFile] = serializeBatchOutput(file_pairs, CM, AP, sampleresults, '../');
+[statisticsFile, histogramFile] = serializeBatchOutput(file_pairs, CM, AP, sampleresults);
 
 save('LacI-CAGop-batch.mat','AP','bins','file_pairs','results','sampleresults');
-
-% Dump CSV files:
-fprintf('Dumping CSV files\n');
-fid = fopen('LacI-CAGop-batch.csv','w');
-fprintf(fid,'Device ID,datapoints,,,log10 Mean,,,Std.Dev. of mean (fold)\n'); 
-fprintf(fid,',EBFP2,EYFP,mKate,EBFP2,EYFP,mKate,EBFP2,EYFP,mKate\n'); 
-for i=1:n_conditions
-    fprintf(fid,'%s,',file_pairs{i,1});
-    fprintf(fid,'%d,',sum(results{i}.bincounts));
-    fprintf(fid,'%d,',log10(results{i}.means));
-    fprintf(fid,'%d,',results{i}.stdofmeans);
-    fprintf(fid,'\n');
-end
-fclose(fid);

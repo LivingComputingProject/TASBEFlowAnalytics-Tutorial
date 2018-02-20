@@ -1,4 +1,5 @@
 % This file shows how to perform a batch of +/- comparisons
+TASBEConfig.checkpoint('init');
 
 % load the color model
 load('../template_colormodel/CM120312.mat');
@@ -46,15 +47,14 @@ batch_description = {...
  };
 
 % Execute the actual analysis
-TASBEConfig.set('OS.DeviceName',device_name);
+TASBEConfig.set('OutputSettings.DeviceName',device_name);
 results = process_plusminus_batch( CM, batch_description, AP);
 
 % Make additional output plots
 for i=1:numel(results)
-    TASBEConfig.set('OS.StemName',batch_description{i}{1});
-    TASBEConfig.set('OS.DeviceName',device_name);
-    TASBEConfig.set('OS.Directory','plots/');
-    TASBEConfig.set('OS.PlotTickMarks',1);
+    TASBEConfig.set('OutputSettings.StemName',batch_description{i}{1});
+    TASBEConfig.set('OutputSettings.DeviceName',device_name);
+    TASBEConfig.set('OutputSettings.PlotTickMarks',1);
     plot_plusminus_comparison(results{i})
 end
 

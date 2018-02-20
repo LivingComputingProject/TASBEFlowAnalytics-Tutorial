@@ -71,8 +71,7 @@ colorpairfiles{3} = {channels{2}, channels{1}, channels{3}, [colordata '2012-03-
 CM = ColorModel(beadfile, blankfile, channels, colorfiles, colorpairfiles);
 CM = set_ERF_channel_name(CM, 'FITC-A'); % Name the channel we'll use for ERF units
 CM=set_dequantization(CM, 1); % important at low levels
-CM=set_bead_plot(CM, 2); % 2 = show beads for all channels, even though only FITC will be used
-CM=set_bead_min(CM, 1); % Don't consider beads less than this amount
+TASBEConfig.set('beads.rangeMin', 1); % Don't consider beads less than this (log10) amount
 % Things we'll talk about in the next section...
 CM=set_translation_plot(CM, true); 
 CM=set_translation_channel_min(CM,[2,2,2]);
@@ -88,15 +87,15 @@ CM = resolve(CM);
 % The FITC channel is the one that we will key off 
 % The identification is pretty terrible, though!
 % Two things are going wrong here:
-% 1) We're getting smearing of peaks from autofluorescence: bead_min should be raised
+% 1) We're getting smearing of peaks from autofluorescence: beads.rangeMin should be raised
 % 2) Automatic threshold detection is not finding the right value, because there
 %    is not a distinct enough "valley" in the FITC graph
 % Notice also that you got a warning that: "Warning: Bead calibration probably incorrect"
 % When peaks are mis-detected, this typically leads to a bad fit against the
 % expected sequence gaps, giving warning of failures.
 
-CM=set_bead_min(CM, 2); % Don't consider beads less than this amount
-CM=set_bead_peak_threshold(CM, 200); % override default peak threshold
+TASBEConfig.set('beads.rangeMin', 2); % Don't consider beads less than this (log10) amount
+TASBEConfig.set('beads.peakThreshold', 200); % override default peak threshold
 CM = resolve(CM);
 
 % We get a new warning: "Warning: Only one bead peak found, assuming brightest"
