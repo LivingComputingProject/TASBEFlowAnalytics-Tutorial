@@ -67,7 +67,7 @@ CM=set_translation_channel_min(CM,[2,2,2]);
 
 % When dealing with very strong fluorescence, use secondary channel to segment
 % TASBEConfig.set('beads.secondaryBeadChannel','PE-Tx-Red-YG-A');
-CM = add_filter(CM,autogate);
+CM = add_prefilter(CM,autogate);
 
 % Execute and save the model
 CM=resolve(CM);

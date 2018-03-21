@@ -4,6 +4,9 @@ TASBEConfig.checkpoint('init');
 
 % load the color model
 load('../template_colormodel/CM120312.mat');
+% can also add filters, such as gating out all "low transfection" red less than 10^6 MEFL:
+%CM = add_postfilter(CM,RangeFilter('PE-Tx-Red-YG-A',[1e6 inf]));
+
 
 % set up metadata
 experimentName = 'LacI Transfer Curve';

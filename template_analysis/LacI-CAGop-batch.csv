@@ -1,4 +1,4 @@
-Device ID,datapoints,,,log10 Mean,,,Std.Dev. of mean (fold)
+Device Id,datapoints,,,log10 Mean,,,Std.Dev. of mean (fold)
 ,EBFP2,EYFP,mKate,EBFP2,EYFP,mKate,EBFP2,EYFP,mKate
 Dox 0.1,52482,109175,119351,4.345084e+00,5.394359e+00,5.609663e+00,1,1,1,
 Dox 0.2,42682,88230,95559,4.344227e+00,5.391166e+00,5.606492e+00,1,1,1,
