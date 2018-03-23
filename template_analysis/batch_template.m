@@ -54,7 +54,7 @@ n_conditions = size(file_pairs,1);
 % Make output plots
 TASBEConfig.set('OutputSettings.StemName','LacI-CAGop');
 TASBEConfig.set('OutputSettings.FixedInputAxis',[1e4 1e10]);
-plot_batch_histograms(results,sampleresults,{'b','y','r'},CM);
+plot_batch_histograms(results,sampleresults,{'b','g','r'},CM);
 
 [statisticsFile, histogramFile] = serializeBatchOutput(file_pairs, CM, AP, sampleresults);
 
