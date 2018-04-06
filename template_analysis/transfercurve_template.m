@@ -52,8 +52,7 @@ experiment = Experiment(experimentName,{inducer_name}, level_file_pairs);
 
 % Execute the actual analysis
 fprintf('Starting analysis...\n');
-sampleresults = process_data(CM,experiment,AP);
-results = summarize_data(CM,experiment,AP,sampleresults);
+[results, sampleresults] = process_transfer_curve( CM, experiment, AP);
 
 % Make output plots
 TASBEConfig.set('OutputSettings.StemName','Fine');
