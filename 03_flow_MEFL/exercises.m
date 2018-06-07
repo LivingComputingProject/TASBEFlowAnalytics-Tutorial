@@ -11,16 +11,16 @@ colordata = '../example_controls/';
 dosedata = '../example_assay/';
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Calibration beads:
+% Calibration beads (Plots folder and Fig1 to Fig4):
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Let's look at an example of SpheroTech RCP-30-5A calibration beads:
-fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'Pacific Blue-A','PE-Tx-Red-YG-A',1,[0 0; 6 6],1);
-% and without blending...
-fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'Pacific Blue-A','PE-Tx-Red-YG-A',0,[0 0; 6 6],1);
+fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'Pacific Blue-A','PE-Tx-Red-YG-A',1,[0 0; 6 6],1); % Fig1
+% and without blending (density is 0)...
+fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'Pacific Blue-A','PE-Tx-Red-YG-A',0,[0 0; 6 6],1); % Fig2
 % Notice that there is a nice, nearly linear sequence of 5 peaks
-% the last one is pretty blurry, as it comes down into autofluorescence
+% the last one (bottom left) is pretty blurry, as it comes down into
+% autofluorescence (failed transfection)
 % There are actually 8 peaks here: the bottom one blends all 4 of the low peaks together
 % Notice also that the peaks are spaced irregularly.
 % This is intentional by the manufacturer, and allows us to know which peaks we are
@@ -31,8 +31,8 @@ fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'Pacific Blue-A','PE-Tx-Red-YG
 % down near the bottom instead.
 
 % Let's take a look at a different pair of channels:
-fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'PE-Tx-Red-YG-A','FITC-A',1,[0 0; 6 6],1);
-fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'PE-Tx-Red-YG-A','FITC-A',0,[0 0; 6 6],1);
+fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'PE-Tx-Red-YG-A','FITC-A',1,[0 0; 6 6],1); % Fig3
+fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'PE-Tx-Red-YG-A','FITC-A',0,[0 0; 6 6],1); % Fig4
 % Notice that the relationship of the peaks is not linear any more.
 % This is because the FITC peaks are much lower, and are blurring into autofluorescence
 % Thus, we need to calibrate using only peaks far from autofluorescence.
@@ -44,21 +44,25 @@ fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'PE-Tx-Red-YG-A','FITC-A',0,[0
 % which is problematic because it makes different units appear the same.
 % We recommend standardizing on one: MEFL, from the FITC channel
 
-% So, beads give us the ability to standardize any channel, but no converstion
-% between the units of channels.  That is what we do with multi-color controls (next section)
+% So, beads give us the ability to standardize any channel, but no conversion
+% between the units of channels.  That is what we do with multi-color
+% controls (next section).
 
 
 % Let's build a model and look at peak calibration...
 beadfile = [colordata '2012-03-12_Beads_P3.fcs'];
 blankfile = [colordata '2012-03-12_blank_P3.fcs'];
 
+% Create one channel / colorfile pair for each color
 channels = {}; colorfiles = {};
 channels{1} = Channel('Pacific Blue-A', 405,450,50);
 channels{1} = setPrintName(channels{1},'Blue');
 colorfiles{1} = [colordata '2012-03-12_ebfp2_P3.fcs'];
+
 channels{2} = Channel('PE-Tx-Red-YG-A', 561,610,20);
 channels{2} = setPrintName(channels{2},'Red');
 colorfiles{2} = [colordata '2012-03-12_mkate_P3.fcs'];
+
 channels{3} = Channel('FITC-A', 488,530,30);
 channels{3} = setPrintName(channels{3},'Yellow');
 colorfiles{3} = [colordata '2012-03-12_EYFP_P3.fcs'];
@@ -67,18 +71,27 @@ colorpairfiles = {};
 colorpairfiles{1} = {channels{1}, channels{3}, channels{2}, [colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs']};
 colorpairfiles{2} = {channels{2}, channels{3}, channels{1}, [colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs']};
 colorpairfiles{3} = {channels{2}, channels{1}, channels{3}, [colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs']};
-
 CM = ColorModel(beadfile, blankfile, channels, colorfiles, colorpairfiles);
-CM = set_ERF_channel_name(CM, 'FITC-A'); % Name the channel we'll use for ERF units
+CM=set_translation_plot(CM, true);
+CM=set_noise_plot(CM, true);
+
+TASBEConfig.set('beads.beadModel','SpheroTech RCP-30-5A'); % Entry from BeadCatalog.xls matching your beads
+TASBEConfig.set('beads.beadBatch','Lot AA01, AA02, AA03, AA04, AB01, AB02, AC01, GAA01-R'); % Entry from BeadCatalog.xls containing your lot
+% Can also set bead channel if, for some reason, you don't want to use fluorescein as standard
+% This defaults to FITC as it is strongly recommended to use fluorescein standards.
+% TASBEConfig.set('beadChannel','FITC');
+
+CM = set_ERF_channel_name(CM, 'FITC-A');
+
 CM=set_dequantization(CM, 1); % important at low levels
-TASBEConfig.set('beads.rangeMin', 1); % Don't consider beads less than this (log10) amount
+TASBEConfig.set('beads.rangeMin', 1); % Don't consider beads less than this 10^1 amount
 % Things we'll talk about in the next section...
 CM=set_translation_plot(CM, true); 
 CM=set_translation_channel_min(CM,[2,2,2]);
 % and build it!
-CM = resolve(CM);
+CM = resolve(CM); % plots1
 
-% Let's take a look at the "bead-calibration-C" graphs
+% Let's take a look at the "bead-peak-identification-C" graphs
 % Each one is a 1D histogram, with automatic identification of the peaks (red lines)
 % Notice that the highest peaks have more than 1000 events/bin.  This is good,
 % because it means we're not likely badly affected by random error.  When the numbers
@@ -94,9 +107,9 @@ CM = resolve(CM);
 % When peaks are mis-detected, this typically leads to a bad fit against the
 % expected sequence gaps, giving warning of failures.
 
-TASBEConfig.set('beads.rangeMin', 2); % Don't consider beads less than this (log10) amount
+TASBEConfig.set('beads.rangeMin', 2); % Don't consider beads less than this 10^2 amount
 TASBEConfig.set('beads.peakThreshold', 200); % override default peak threshold
-CM = resolve(CM);
+CM = resolve(CM); % plots2
 
 % We get a new warning: "Warning: Only one bead peak found, assuming brightest"
 % This is because the FITC channel is tuned for such bright fluorescence
@@ -115,12 +128,12 @@ CM = resolve(CM);
 % than others (e.g. FITC vs. PE-Tx-Red-YG-A)
 
 % Some more notes:
-% - We currently only support RCP-30-5A, but others could presumably be supported
+% - We currently support all of the calibration beads in the BeadCatalog Excel spreadsheet
 % - Does spectral overlap play a significant role in the measured values?  
 %   Probably not (e.g. 10% shift vs. a 1000x range), but not certain...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Translation between channels:
+% Translation between channels (Fig5 to Fig6):
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % How do we measure red or blue in ERF?
@@ -134,9 +147,9 @@ CM = resolve(CM);
 
 % We recommend 3 colors as best practices:
 % Let's look at such a multi-color control file:
-fcs_scatter([colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs'],'FITC-A','Pacific Blue-A',1,[0 0; 6 6],1);
+fcs_scatter([colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs'],'FITC-A','Pacific Blue-A',1,[0 0; 6 6],1); % Fig5
 % and without blending...
-fcs_scatter([colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs'],'FITC-A','Pacific Blue-A',0,[0 0; 6 6],1);
+fcs_scatter([colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs'],'FITC-A','Pacific Blue-A',0,[0 0; 6 6],1); % Fig6
 % Notice that it's only nicely linear for the higher levels, 
 % and that it's much smearier than our compensation controls
 % The first is what set_translation_channel_min is for
@@ -153,8 +166,7 @@ fcs_scatter([colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs'],'FITC-A','Pacific B
 % the red line is the computed translation fit, which assumes a pure linear
 % conversion with no offset (since these are computed with compensated a.u.)
 
-% A weighted average then gives a linear fit, producing a matrix:
+% A weighted average then gives a linear fit, producing a matrix consisting of conversion factors:
 getScales(get_color_translation_model(CM))
 % These will usually be fairly close to 1, but it depends on the strength of
 % the fluorophores and how precisely they are matched
-

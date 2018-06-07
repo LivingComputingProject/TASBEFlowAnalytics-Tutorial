@@ -11,24 +11,22 @@ colordata = '../example_controls/';
 dosedata = '../example_assay/';
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Examples of flow data
+% Examples of flow data (Fig1 to Fig4)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % pure scatter - often hard to interpret
-fcs_scatter([dosedata 'LacI-CAGop_C4_C04_P3.fcs'],'PE-Tx-Red-YG-A','Pacific Blue-A',0,[0 0; 6 6],1);
-fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','Pacific Blue-A',0,[0 0; 6 6],1);
+fcs_scatter([dosedata 'LacI-CAGop_C4_C04_P3.fcs'],'PE-Tx-Red-YG-A','Pacific Blue-A',0,[0 0; 6 6],1); % Fig1
+fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','Pacific Blue-A',0,[0 0; 6 6],1); % Fig2
 % smoothed density plot omits details but often summarizes collective better
-data1 = fcs_scatter([dosedata 'LacI-CAGop_C4_C04_P3.fcs'],'PE-Tx-Red-YG-A','Pacific Blue-A',1,[0 0; 6 6],1);
-data2 = fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','Pacific Blue-A',1,[0 0; 6 6],1);
+data1 = fcs_scatter([dosedata 'LacI-CAGop_C4_C04_P3.fcs'],'PE-Tx-Red-YG-A','Pacific Blue-A',1,[0 0; 6 6],1); % Fig3
+data2 = fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','Pacific Blue-A',1,[0 0; 6 6],1); % Fig4
 
 % Things to notice:
 % - look at the size of data1 and data2: there's a *LOT* of points in these samples
 % - because there is so much of it, pure scatter graphs are not sufficient for interpreting the data
 % - the axes are logarithmic, and variation is evenly distributed on the log scale
-% - the data runs up against the axes: there are values less than zero not shown
-%   less than zero values come from sensor error
-% - low values are quantized, but not round
+% - the data runs up against the axes: values less than zero (sensor error) are not shown
+% - low values are quantized, but not rounded
 % - the very highest values saturate, at around 10^5.5 in these files
 % - the populations of cells are complex, multimodal, and range widely in observed fluorescence
 
@@ -71,22 +69,21 @@ data(data(:,7)>260000,7)
 % How high was this really?  We cannot know because it is saturated!
 
 
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Making a ColorModel (Fig5)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 channels = {};
 
 channels{1} = Channel('Pacific Blue-A', 405, 450, 50);
 channels{2} = Channel('PE-Texas Red-A', 561, 610, 20);
 channels{3} = Channel('FITC-A', 488, 530, 30);
-CM = ColorModel('','',channels,{{},{},{}},{});
+CM = ColorModel('','',channels,{{},{},{}},{}); % simplified ColorModel, more features will be introduced in future tutorials
 
-filtered = read_filtered_au(CM,[colordata '07-29-11_EYFP_P3.fcs']);
-% Notice that 'filtered' is smaller than 'data': we've dropped the first 25 "units" of time
-% It should be in tenths of seconds, but in fact it's the uninterpreted timestep field
+filtered = read_filtered_au(CM,[colordata '07-29-11_EYFP_P3.fcs']); % applies any filters set in ColorModel
 
-CM = set_dequantization(CM,true);
+CM = set_dequantization(CM,true); % dequantization adds noise to spread the data out more, especially useful at low levels
 [dequantized hdr] = read_filtered_au(CM,[dosedata 'LacI-CAGop_C4_C04_P3.fcs']);
 xc = dequantized(:,10); yc = dequantized(:,11);
 pos = xc>0 & yc>0;
-figure; smoothhist2D(log10([xc(pos) yc(pos)]),10,[200, 200],[],'image',[0 0; 6 6]);
+figure; smoothhist2D(log10([xc(pos) yc(pos)]),10,[200, 200],[],'image',[0 0; 6 6]); % Fig5
 % if desired, quantization can be smoothed out by introduction of small noise
