@@ -25,7 +25,7 @@ fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','AmCyan-A',1,[0 0; 6 6],
 % massive spectral overlap
 fcs_scatter([colordata '07-29-11_EBFP2_P3.fcs'],'Pacific Blue-A','AmCyan-A',1,[0 0; 6 6],1); % Fig5
 
-% let's look at some of these without blending (density set to 0):
+% let's look at some of these without blending (plot 'density' set to 0):
 fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','PE-TxRed YG-A',0,[0 0; 6 6],1); % Fig6
 fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','AmCyan-A',0,[0 0; 6 6],1); % Fig7
 fcs_scatter([colordata '07-29-11_EBFP2_P3.fcs'],'Pacific Blue-A','AmCyan-A',0,[0 0; 6 6],1); % Fig8
@@ -36,7 +36,7 @@ fcs_scatter([colordata '2012-03-12_EBFP2_EYFP_P3.fcs'],'Pacific Blue-A','FITC-A'
 [raw hdr data] = fca_readfcs([colordata '07-29-11_blank_P3.fcs']);
 % histogram of EBFP2:
 figure; hist(data(:,10),100); % Fig10
-% with random blurring to damp quanization:
+% with random blurring to damp quantization:
 figure; hist(data(:,10)+(rand(size(data(:,10)))-0.5),100); % Fig11
 % Notice that the presence of negative values means that we are necessarily dealing with a combination
 % of autofluorescence and instrument error.  There is not currently any elegant way of separating these.
@@ -45,7 +45,7 @@ figure; hist(data(:,10)+(rand(size(data(:,10)))-0.5),100); % Fig11
 mu = mean(data(:,10))
 sigma = std(data(:,10))
 
-% Notice that the fit is pretty good:
+% Notice that the fit to a gaussian is pretty good:
 range = -100:5:150;
 figure; % Fig12
 plot(range,histc(data(:,10),range),'b-'); hold on; 
@@ -86,7 +86,7 @@ xlim([1e0 1e6]); ylim([1e0 1e6]);
 beadfile = [colordata '2012-03-12_Beads_P3.fcs'];
 blankfile = [colordata '2012-03-12_blank_P3.fcs'];
 
-% Create one channel / colorfile pair for each color
+% Create one channel / colorfile (positive control) pair for each color
 channels = {}; colorfiles = {};
 channels{1} = Channel('Pacific Blue-A', 405,450,50);
 channels{1} = setPrintName(channels{1},'Blue');
@@ -143,8 +143,9 @@ CM = resolve(CM); %resolve computes a ColorModel from all of the pointers that a
 % above autofluorescence.
 % 
 % The linear factors plus autofluorescence make up an affine transform that
-% compensates for spectral overlap. This is so that the entire cell
-% fluorescence contributes to the signal color.
+% compensates for spectral overlap. It turns a measurement of fluorescence
+% from the cell plus fluorescence from protein into just a measurement of
+% fluorescence from protein.
 %
 % Finally, the "compensated-" graphs show the results of applying the
 % compensation transform to the positive controls.  The black lines show
@@ -165,7 +166,7 @@ compensated = readfcs_compensated_au(CM,[dosedata 'LacI-CAGop_C3_C03_P3.fcs'],0,
 %    We typically use this when data is going to be interpreted on the log scale,
 %    and we aren't planning to filter it ourselves differently later,
 %    but it has the unfortunate side effect of creating a large number of
-%    1s. We can also remove negative values before compensation. 
+%    1s. We can also remove negative values before compensation by adding a gate that filters them out. 
 
 % Compare red vs. yellow in compensated and raw:
 figure; loglog(compensated(:,2),compensated(:,3),'.','MarkerSize',1); % Fig16

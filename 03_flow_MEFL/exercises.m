@@ -81,7 +81,7 @@ TASBEConfig.set('beads.beadBatch','Lot AA01, AA02, AA03, AA04, AB01, AB02, AC01,
 % This defaults to FITC as it is strongly recommended to use fluorescein standards.
 % TASBEConfig.set('beadChannel','FITC');
 
-CM = set_ERF_channel_name(CM, 'FITC-A'); % We'll explain this in the next exercise
+CM = set_ERF_channel_name(CM, 'FITC-A');
 
 CM=set_dequantization(CM, 1); % important at low levels
 TASBEConfig.set('beads.rangeMin', 1); % Don't consider beads less than this 10^1 amount
@@ -89,9 +89,9 @@ TASBEConfig.set('beads.rangeMin', 1); % Don't consider beads less than this 10^1
 CM=set_translation_plot(CM, true); 
 CM=set_translation_channel_min(CM,[2,2,2]);
 % and build it!
-CM = resolve(CM);
+CM = resolve(CM); % plots1
 
-% Let's take a look at the "bead-calibration-C" graphs
+% Let's take a look at the "bead-peak-identification-C" graphs
 % Each one is a 1D histogram, with automatic identification of the peaks (red lines)
 % Notice that the highest peaks have more than 1000 events/bin.  This is good,
 % because it means we're not likely badly affected by random error.  When the numbers
@@ -109,7 +109,7 @@ CM = resolve(CM);
 
 TASBEConfig.set('beads.rangeMin', 2); % Don't consider beads less than this 10^2 amount
 TASBEConfig.set('beads.peakThreshold', 200); % override default peak threshold
-CM = resolve(CM);
+CM = resolve(CM); % plots2
 
 % We get a new warning: "Warning: Only one bead peak found, assuming brightest"
 % This is because the FITC channel is tuned for such bright fluorescence
@@ -166,7 +166,7 @@ fcs_scatter([colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs'],'FITC-A','Pacific B
 % the red line is the computed translation fit, which assumes a pure linear
 % conversion with no offset (since these are computed with compensated a.u.)
 
-% A weighted average then gives a linear fit, producing a matrix:
+% A weighted average then gives a linear fit, producing a matrix consisting of conversion factors:
 getScales(get_color_translation_model(CM))
 % These will usually be fairly close to 1, but it depends on the strength of
 % the fluorophores and how precisely they are matched
