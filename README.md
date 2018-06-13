@@ -1,5 +1,5 @@
-This is a tutorial for how to use the TASBE Flow Analytics package.
-(https://github.com/TASBE/TASBEFlowAnalytics)
+# TASBE Flow Analytics Tutorial
+This is a tutorial for how to use the [TASBE Flow Analytics package](https://github.com/TASBE/TASBEFlowAnalytics).
 
 Example code in this tutorial is distributed, insofar as possible, in
 the public domain.
@@ -25,7 +25,7 @@ The material in this tutorial is organized into three collections:
 These are prototypical templates for using the TASBE Flow Analytics package.
 Most common uses can be executed simply by copying these files, changing configuration commands to match your machine, and replacing the example FCS files it references with your own.
 
-* template_colormodel: Use a set of controls to build a "color model", which TASBE Flow Analytics uses to gate and compensate data and to translate it into calibrated units.
+* template_colormodel: Use a set of controls to build a "color model", which TASBE Flow Analytics uses to gate and compensate data and to translate it into calibrated units.(This folder also contains a template that allows for beadfile comparisons.)
 * template_analysis: Use a color model to analyze experimental data, for any experiment organized in one of several standard designs.
 
 ## Prototypical Example Data
