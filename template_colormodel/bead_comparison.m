@@ -45,10 +45,13 @@ CM = set_unit_translation(CM, UT);
 tolerance = 0.5; % optional argument, default of 0.5
 for i=2:numel(beadfiles)  
     [ok, ratios] = check_beads_identical(CM, beadfiles{i}, tolerance);
-    display(ok);
-    display(ratios);
+    fprintf('Ratios between peaks:');
+    fprintf(' %.2f',ratios);
+    fprintf('\n');
     % A warning is thrown if two beadfiles are not considered identical
-    if ~ok
+    if ok
+        fprintf('Bead file %i confirmed sufficiently identical\n',i);
+    else
         warning('Beadfiles %bf1 and %bf2 are not identical to each other!', beadfile, beadfiles{i});
     end
 end
