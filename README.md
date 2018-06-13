@@ -16,19 +16,19 @@ the following two publications:**
   Biology Devices," MIT CSAIL Tech Report 2012-008, April 2012. 
   http://hdl.handle.net/1721.1/69973
   
-# Organization
+## Organization
 
 The material in this tutorial is organized into three collections:
 
-## Quick Start Templates
+### Quick Start Templates
 
 These are prototypical templates for using the TASBE Flow Analytics package.
 Most common uses can be executed simply by copying these files, changing configuration commands to match your machine, and replacing the example FCS files it references with your own.
 
-* template_colormodel: Use a set of controls to build a "color model", which TASBE Flow Analytics uses to gate and compensate data and to translate it into calibrated units.(This folder also contains a template that allows for beadfile comparisons.)
+* template_colormodel: Use a set of controls to build a "color model", which TASBE Flow Analytics uses to gate and compensate data and to translate it into calibrated units. (This folder also contains a template that allows for beadfile comparisons.)
 * template_analysis: Use a color model to analyze experimental data, for any experiment organized in one of several standard designs.
 
-## Prototypical Example Data
+### Prototypical Example Data
 
 The quick-start templates can be applied to prototypical example data to see how they work and get a feel for what good results look like:
 
@@ -37,7 +37,7 @@ The quick-start templates can be applied to prototypical example data to see how
 
 Example flow cytometry files are provided courtesy of Prof. Ron Weiss (MIT).
 
-## Educational Material on Flow Cytometry
+### Educational Material on Flow Cytometry
 
 This material is optional, and is intended to help the user understand better how calibrated flow cytometry works and why controls are organized the way they are in order to build color models.
 
