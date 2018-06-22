@@ -53,12 +53,10 @@ results = process_plusminus_batch( CM, batch_description, AP);
 
 % Make additional output plots
 for i=1:numel(results)
-    for j=1:numel(results{i})
-        TASBEConfig.set('OutputSettings.StemName',batch_description{i}{j});
-        TASBEConfig.set('OutputSettings.DeviceName',device_name);
-        TASBEConfig.set('OutputSettings.PlotTickMarks',1);
-        plot_plusminus_comparison(results{i}{j})
-    end
+    TASBEConfig.set('OutputSettings.StemName',batch_description{i}{1});
+    TASBEConfig.set('OutputSettings.DeviceName',device_name);
+    TASBEConfig.set('OutputSettings.PlotTickMarks',1);
+    plot_plusminus_comparison(results{i}, batch_description{i}{3});
 end
 
 save('-V7','LacI-CAGop-plus-minus.mat','batch_description','AP','results');
