@@ -29,17 +29,19 @@ AP=setUseAutoFluorescence(AP,false');
 % AP=setNumGaussianComponents(AP,3);
 
 % Make a map of the batches comparisons to test, add in a list of batch
-% names (i.e. {'+', '-'}) to signify possible sets.
+% names (e.g., {'+', '-'}) to signify possible sets.
 % This analysis supports two variables: a +/- variable and a "tuning" variable
 stem1011 = '../example_assay/LacI-CAGop_';
 batch_description = {...
- {'Lows';'BaseDox';{'+', '-'};
+ {'Lows';'BaseDox';{'+', '-', 'control'};
   % First set is the matching "plus" conditions
-  {0.1,  {[stem1011 'B9_B09_P3.fcs']}; % Replicates go here, e.g., {[rep1], [rep2], [rep3]}
-   0.2,  {[stem1011 'B10_B10_P3.fcs']}};
+  {0.1,  {[stem1011 'C3_C03_P3.fcs']}; % Replicates go here, e.g., {[rep1], [rep2], [rep3]}
+   0.2,  {[stem1011 'C4_C04_P3.fcs']}};
   % Second set is the matching "minus" conditions 
   {0.1,  {[stem1011 'B3_B03_P3.fcs']};
-   0.2,  {[stem1011 'B4_B04_P3.fcs']}}};
+   0.2,  {[stem1011 'B4_B04_P3.fcs']}};
+  {0.1,  {[stem1011 'B9_B09_P3.fcs']}; % Replicates go here, e.g., {[rep1], [rep2], [rep3]}
+   0.2,  {[stem1011 'B10_B10_P3.fcs']}}};
  {'Highs';'BaseDox';{'+', '-'};
   {10,   {[stem1011 'C3_C03_P3.fcs']};
    20,   {[stem1011 'C4_C04_P3.fcs']}};
