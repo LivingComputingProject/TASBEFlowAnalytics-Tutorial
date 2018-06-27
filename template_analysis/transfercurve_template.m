@@ -59,6 +59,7 @@ TASBEConfig.set('OutputSettings.StemName','Fine');
 
 % Plot how the constitutive fluorescence was distributed
 TASBEConfig.set('OutputSettings.DeviceName',device_name);
+TASBEConfig.set('histogram.displayLegend',false);
 plot_bin_statistics(sampleresults);
 
 % Plot the relation between inducer and input fluorescence
