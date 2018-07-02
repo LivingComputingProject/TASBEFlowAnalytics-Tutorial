@@ -49,7 +49,7 @@ file_pairs = {...
 n_conditions = size(file_pairs,1);
 
 % Execute the actual analysis
-[results sampleresults] = per_color_constitutive_analysis(CM,file_pairs,{'EBFP2','EYFP','mKate'},AP);
+[results, sampleresults] = per_color_constitutive_analysis(CM,file_pairs,{'EYFP','mKate', 'EBFP2'},AP);
 
 % Make output plots
 TASBEConfig.set('OutputSettings.StemName','LacI-CAGop');
