@@ -25,7 +25,8 @@ FCS data. The following sections describe specific features for each template sh
 * The Dox column is used to find the blank, beads, and all files. 
 * The Template # column determines which filename template table to reference.
 * The Sample Name column is important for the samples in batch_analysis
-* The File Name columns are used to override filenames from the filename template. (Currently replicates are not considered.)
+* The File Name columns are used to override filenames from the filename template.
+* Information for each replicate should be in the same row with commas separating the values (i.e. sample locations for three replicates could look like A1,A2,A3).
 
 ### Additional Settings
 * To change a preference, input the new value within the Value column.
