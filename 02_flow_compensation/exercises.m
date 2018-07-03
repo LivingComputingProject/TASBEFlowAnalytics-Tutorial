@@ -114,8 +114,8 @@ TASBEConfig.set('beads.beadBatch','Lot AA01, AA02, AA03, AA04, AB01, AB02, AC01,
 CM = set_ERF_channel_name(CM, 'FITC-A'); % We'll explain this in the next exercise
 
 % Now let's read some files...
-raw = read_filtered_au(CM,[dosedata 'LacI-CAGop_C3_C03_P3.fcs']);
-compensated = readfcs_compensated_au(CM,[dosedata 'LacI-CAGop_C3_C03_P3.fcs'],0,1);
+raw = read_filtered_au(CM,[dosedata 'LacI-CAGop_C3_P3.fcs']);
+compensated = readfcs_compensated_au(CM,[dosedata 'LacI-CAGop_C3_P3.fcs'],0,1);
 % You should see an error: need to "resolve" the color model first! Comment
 % out above line of code and run again.
 
@@ -159,7 +159,7 @@ CM = resolve(CM); %resolve computes a ColorModel from all of the pointers that a
 % even when it can be compensated for.
 
 
-compensated = readfcs_compensated_au(CM,[dosedata 'LacI-CAGop_C3_C03_P3.fcs'],0,1);
+compensated = readfcs_compensated_au(CM,[dosedata 'LacI-CAGop_C3_P3.fcs'],0,1);
 % The last two arguments are:
 % 1) Whether to add autofluorescence back in after reading (generally not done)
 % 2) Whether to map all values <= 0 to 1 (which is zero on the log scale)
