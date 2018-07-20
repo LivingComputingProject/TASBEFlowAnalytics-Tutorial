@@ -40,6 +40,7 @@ FCS data. The code needed to run the template is in the TASBEFlowAnalytics [cove
 * MEFL-converted point clouds can be obtained by setting the value of the "flow.outputPointCloud" preference to 1. 
 
 ### Next Steps
+**Before running TASBEFlowAnalytics, make sure you have installed TASBE and are not just running it from the directory. Installation instructions are located in the TASBEFlowAnalytics [README](https://github.com/TASBE/TASBEFlowAnalytics/blob/develop/README.md).** 
 After completing and saving the template spreadsheet, the actual analysis can be run in two ways:
 1) Run the function ```analyzeFromExcel``` (located in the code directory of TASBEFlowAnalytics)
 with the file path of the spreadsheet as the input and the type ('colormodel', 'batch', 'plusminus', or 'transfercurve'). ```analyzeFromExcel``` will then create a TemplateExtraction object and run the correct analysis.
