@@ -1,6 +1,6 @@
-# TASBE Flow Analytics Excel Wrapper Instruction Guide
+# TASBE Flow Analytics Excel Interface Instruction Guide
 
-A new feature of the TASBE Flow Analytics package is an Excel wrapper that provides a user-friendly interface between raw FCS data and current TASBE data analysis tools. Using a template spreadsheet, scientists can document important aspects of their experiments without having to worry about writing Matlab code. Currently, the template is organized into 6 sheets: 
+A new feature of the TASBE Flow Analytics package is an Excel interface that provides a user-friendly interface between raw FCS data and current TASBE data analysis tools. Using a template spreadsheet, scientists can document important aspects of their experiments without having to worry about writing Matlab code. Currently, the template is organized into 6 sheets: 
 * "Experiment": includes all of the general experiment information and filename templates
 * "Samples": includes important information regarding samples and batch analysis
 * "Calibration": includes information to generate a Color Model
@@ -8,18 +8,22 @@ A new feature of the TASBE Flow Analytics package is an Excel wrapper that provi
 * "Transfer Curve Analysis": includes information to run transfer curve analysis
 * "Optional Settings": TASBEConfig preferences that should not be changed unless absolutely necessary
 
+**Note**: All filepaths are relative to the location of the spreadsheet template unless they are absolute paths.
+
 ## User Instructions
 An example of the template is located in the TASBEFlowAnalytics-Tutorial titled ```batch_template.xlsm```. This example spreadsheet uses the tutorial
 FCS data. The code needed to run the template is in the TASBEFlowAnalytics [coverney.excel](https://github.com/TASBE/TASBEFlowAnalytics/tree/coverney.excel) branch. The following sections describe specific features for each template sheet. There are more notes highlighted in green throughout the spreadsheet.
 
 ### Experiment
 * Filename templates are used to generate the correct FCS filenames without having to type all of them out. Each filename template is separated into numbered sections with some sections being static and some being variable. The variable sections must correspond to column names in "Samples". 
-(i.e. A template of 1_2_3.fcs would have the numbers replaced with the three correct inputs.) 
+(i.e. A template of 1_2_3.fcs would have the numbers replaced with the three correct inputs.) **Make sure to update the blueprint of number placeholders right below the Filename Template header.**
 * The conditions keys are used to make sure that the values for a certain column name in "Samples" is valid. The keys are used to obtain the sets for plusminus analysis. 
 
 ### Samples 
 * The Sample Name column is necessary for the analysis and needs to be manually filled out.
 * Information for each replicate should be in the same row with commas separating the values (i.e. sample locations for three replicates could look like A1,A2,A3). This feature is not applicable to the experimental condition columns.
+* The "Update Filenames" button serves to generate sample filenames using the filename templates. These filenames are used in the TASBE ```getExcelFilename``` function, so it is important to click the "Update Filenames" button before running any analyses procedures.
+* "Statistics Filename", "Statistics Filepath", "Point Cloud Filename", and "Point Cloud Filepath" are preferences for batch analysis. "Point Cloud Filename" takes in a filename template number instead of a string name since Point Cloud files are generated for multiple samples.
 
 ### Calibration
 * Multiple bead files can be compared by listing out their sample names in the "Sample Name" cell within the "Rainbow Beads" section. (i.e. Beads,Beads2,Beads3). The "Bead Comparison Tolerance" determines how identical you want the bead files to be. The results of the comparisons will be included in the TASBESession located at the bottom of the sheet. 
@@ -29,11 +33,14 @@ FCS data. The code needed to run the template is in the TASBEFlowAnalytics [cove
 ### Comparative Analysis
 * "Comparison Group(s)" contains sample column name-value pairs that determine which samples in the "Samples" sheet are compared.
 * "Comparisons" consist of the required primary comparison sets (i.e. +,-) and the secondary ordering inductions, which are optional. Both the primary and secondary sets are in the form of sample column names for a single plusminus analysis. 
-* Multiple plusminus analysis can be run as long as the Comparison Groups are aligned with their respective Comparison values. Additional preferences including stem name and plot path are required for each analysis. 
+* Multiple plusminus analysis can be run as long as the Comparison Groups are aligned with their respective Comparison values. Additional preferences including otuput filename and plot path are required for each analysis. 
+* The "End Row Number" cell is currently required in order to determine the relative position of the generic plusminus preferences. The value should correspond to the last row (yellow fill) in Comparison Groups/Comparisons.
+* The stem and device name cells were removed and replaced by automatically generated condition names in the format of "column name = value" for each Comparison Group.
 
 ### Transfer Curve Analysis
 * "Comparison Group(s)" contains sample column name-value pairs that determine which samples in the "Samples" sheet are analyzed. Each pair should correspond to a value in "Comparisons".
 * "Comparisons" consists of the sample column name with the transfer curve conditions. It is important for the values to be numerical. Additional preferences including stem name and plot path are required for each analysis. 
+* Device name cells were removed. The defaults for stem names are in the format of "column name = value" for each Comparison Group, or they are the experiment name.
 
 ### Optional Settings
 * To change a preference, input the new value within the Value column.
