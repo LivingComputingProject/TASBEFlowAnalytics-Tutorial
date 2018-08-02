@@ -33,20 +33,20 @@ AP=setUseAutoFluorescence(AP,false');
 % Make a map of induction levels to file sets
 stem1011 = '../example_assay/LacI-CAGop_';
 level_file_pairs = {...
-  0.1,    {[stem1011 'B3_B03_P3.fcs']}; % Replicates go here, e.g., {[rep1], [rep2], [rep3]}
-  0.2,    {[stem1011 'B4_B04_P3.fcs']};
-  0.5,    {[stem1011 'B5_B05_P3.fcs']};
-  1.0,    {[stem1011 'B6_B06_P3.fcs']};
-  2.0,    {[stem1011 'B7_B07_P3.fcs']};
-  5.0,    {[stem1011 'B8_B08_P3.fcs']};
-  10.0,   {[stem1011 'B9_B09_P3.fcs']};
-  20.0,   {[stem1011 'B10_B10_P3.fcs']};
-  50.0,   {[stem1011 'B11_B11_P3.fcs']};
-  100.0,  {[stem1011 'B12_B12_P3.fcs']};
-  200.0,  {[stem1011 'C1_C01_P3.fcs']};
-  500.0,  {[stem1011 'C2_C02_P3.fcs']};
-  1000.0, {[stem1011 'C3_C03_P3.fcs']};
-  2000.0, {[stem1011 'C4_C04_P3.fcs']};
+  0.1,    {[stem1011 'B3_P3.fcs']}; % Replicates go here, e.g., {[rep1], [rep2], [rep3]}
+  0.2,    {[stem1011 'B4_P3.fcs']};
+  0.5,    {[stem1011 'B5_P3.fcs']};
+  1.0,    {[stem1011 'B6_P3.fcs']};
+  2.0,    {[stem1011 'B7_P3.fcs']};
+  5.0,    {[stem1011 'B8_P3.fcs']};
+  10.0,   {[stem1011 'B9_P3.fcs']};
+  20.0,   {[stem1011 'B10_P3.fcs']};
+  50.0,   {[stem1011 'B11_P3.fcs']};
+  100.0,  {[stem1011 'B12_P3.fcs']};
+  200.0,  {[stem1011 'C1_P3.fcs']};
+  500.0,  {[stem1011 'C2_P3.fcs']};
+  1000.0, {[stem1011 'C3_P3.fcs']};
+  2000.0, {[stem1011 'C4_P3.fcs']};
   };
 experiment = Experiment(experimentName,{inducer_name}, level_file_pairs);
 
@@ -59,8 +59,8 @@ TASBEConfig.set('OutputSettings.StemName','Fine');
 
 % Plot how the constitutive fluorescence was distributed
 TASBEConfig.set('OutputSettings.DeviceName',device_name);
-TASBEConfig.set('histogram.displayLegend',false);
-plot_bin_statistics(sampleresults);
+% TASBEConfig.set('histogram.displayLegend',false);
+plot_bin_statistics(sampleresults, getInducerLevelsToFiles(experiment,1));
 
 % Plot the relation between inducer and input fluorescence
 TASBEConfig.set('OutputSettings.DeviceName',inducer_name);
