@@ -37,6 +37,14 @@ channels{3} = setPrintName(channels{3}, 'EBFP2');
 channels{3} = setLineSpec(channels{3}, 'b');
 colorfiles{3} = [stem0312 'ebfp2_P3.fcs'];
 
+% FSC and SSC channels can be added to be read unprocessed.
+%channels{4} = Channel('FSC-A', 488, 488, 10);
+%channels{4} = setPrintName(channels{4}, 'FSC');
+%channels{4} = setLineSpec(channels{4}, 'k');
+% If the name is FSC or SSC (or one of those with '-A', '-H', or '-W') it will automatically be unprocessed; otherwise, set it  
+%channels{4} = setIsUnprocessed(channels{4}), true);
+
+
 % Multi-color controls are used for converting other colors into ERF units
 % Any channel without a control mapping it to ERF will be left in arbirary units.
 colorpairfiles = {};
