@@ -1,6 +1,6 @@
-# TASBEFlowAnalytics Excel Interface Instruction Guide
+# TASBE Flow Analytics Excel Interface Instruction Guide
 
-A new feature of the TASBEFlowAnalytics package is an Excel interface that provides a user-friendly interface between raw FCS data and current TASBE data analysis tools. Using a template spreadsheet, scientists can document important aspects of their experiments without having to worry about writing Matlab code. Currently, the template is organized into the following sheets: 
+A new feature of the TASBE Flow Analytics package is an Excel interface that provides a user-friendly interface between raw FCS data and current TASBE data analysis tools. Using a template spreadsheet, scientists can document important aspects of their experiments without having to worry about writing Matlab code. Currently, the template is organized into the following sheets: 
 * "Experiment": includes all of the general experiment information and filename templates
 * "Samples": includes important information regarding samples and batch analysis
 * "Calibration": includes information to generate a Color Model
@@ -49,7 +49,7 @@ FCS data. The code needed to run the template is in the newest release of [TASBE
 * Outputted Histogram and Statistic CSV files from batch analysis can be controlled with the "flow.outputHistogramFile" and "flow.outputStatisticsFile" preferences.  
 
 ### Next Steps
-**Before running TASBEFlowAnalytics, make sure you have installed TASBE and are not just running it from the directory. Installation instructions are located in the TASBEFlowAnalytics [README](https://github.com/TASBE/TASBEFlowAnalytics/blob/develop/README.md).** 
+**Before running TASBE Flow Analytics, make sure you have installed TASBE and are not just running it from the directory. Installation instructions are located in the TASBEFlowAnalytics [README](https://github.com/TASBE/TASBEFlowAnalytics/blob/develop/README.md).** 
 
 After completing and saving the template spreadsheet, the actual analysis can be run in two ways:
 1) Run the function ```analyzeFromExcel``` (located in the code directory of TASBEFlowAnalytics) from MATLAB
