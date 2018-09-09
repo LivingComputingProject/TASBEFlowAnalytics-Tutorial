@@ -1,4 +1,4 @@
-function test_suite = test_01_flow_cytometry
+function test_suite = test_batch_template
     TASBEConfig.checkpoint('test');
     try % assignment of 'localfunctions' is necessary in Matlab >= 2016
         test_functions=localfunctions();
@@ -6,7 +6,6 @@ function test_suite = test_01_flow_cytometry
     end
     initTestSuite;
 
-function test_01_flow_cytometry_endtoend
-    set(0,'DefaultFigureVisible','off')
-    run ../01_flow_cytometry/exercises 
-    set(0,'DefaultFigureVisible','on')
+function test_batch_template_endtoend
+    make_testing_colormodel;
+    run ../template_analysis/batch_template

@@ -1,4 +1,4 @@
-function test_suite = test_01_flow_cytometry
+function test_suite = test_transfercurve_template
     TASBEConfig.checkpoint('test');
     try % assignment of 'localfunctions' is necessary in Matlab >= 2016
         test_functions=localfunctions();
@@ -6,7 +6,6 @@ function test_suite = test_01_flow_cytometry
     end
     initTestSuite;
 
-function test_01_flow_cytometry_endtoend
-    set(0,'DefaultFigureVisible','off')
-    run ../01_flow_cytometry/exercises 
-    set(0,'DefaultFigureVisible','on')
+function test_transfercurve_template_endtoend
+    make_testing_colormodel;
+    run ../template_analysis/transfercurve_template
