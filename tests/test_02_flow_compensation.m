@@ -8,6 +8,6 @@ function test_suite = test_02_flow_compensation
 
 function test_02_flow_compensation_endtoend
     set(0,'DefaultFigureVisible','off')
-    run ../02_flow_compensation/exercises
+    run 02_flow_compensation/exercises
     set(0,'DefaultFigureVisible','on')
      

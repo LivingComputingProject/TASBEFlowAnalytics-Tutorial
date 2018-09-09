@@ -8,4 +8,4 @@ function test_suite = test_plusminus_template
 
 function test_plusminus_template_endtoend
     make_testing_colormodel;
-    run ../template_analysis/plusminus_template
+    run template_analysis/plusminus_template

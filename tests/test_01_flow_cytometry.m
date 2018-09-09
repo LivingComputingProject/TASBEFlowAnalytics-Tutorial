@@ -8,5 +8,5 @@ function test_suite = test_01_flow_cytometry
 
 function test_01_flow_cytometry_endtoend
     set(0,'DefaultFigureVisible','off')
-    run ../01_flow_cytometry/exercises 
+    run 01_flow_cytometry/exercises 
     set(0,'DefaultFigureVisible','on')

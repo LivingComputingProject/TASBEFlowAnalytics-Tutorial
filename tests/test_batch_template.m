@@ -8,4 +8,4 @@ function test_suite = test_batch_template
 
 function test_batch_template_endtoend
     make_testing_colormodel;
-    run ../template_analysis/batch_template
+    run template_analysis/batch_template

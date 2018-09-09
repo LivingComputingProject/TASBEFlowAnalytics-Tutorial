@@ -8,4 +8,4 @@ function test_suite = test_transfercurve_template
 
 function test_transfercurve_template_endtoend
     make_testing_colormodel;
-    run ../template_analysis/transfercurve_template
+    run template_analysis/transfercurve_template

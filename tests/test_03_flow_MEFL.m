@@ -8,5 +8,5 @@ function test_suite = test_03_flow_MEFL
 
 function test_03_flow_MEFL_endtoend
     set(0,'DefaultFigureVisible','off')
-    run ../03_flow_MEFL/exercises
+    run 03_flow_MEFL/exercises
     set(0,'DefaultFigureVisible','on')
