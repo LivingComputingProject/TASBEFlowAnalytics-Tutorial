@@ -1,5 +1,5 @@
 function test_suite = test_02_flow_compensation
-    TASBEConfig.checkpoint('test');
+    % TASBEConfig.checkpoint('test');
     try % assignment of 'localfunctions' is necessary in Matlab >= 2016
         test_functions=localfunctions();
     catch % no problem; early Matlab versions can use initTestSuite fine
