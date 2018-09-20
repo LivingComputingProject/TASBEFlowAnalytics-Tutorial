@@ -90,7 +90,7 @@ else
 	TEST_RUNNER=moxunit_runtests
 endif
 
-TEST_INIT=addpath('$(TESTDIR)');TASBEConfig.reset();TASBEConfig.set('testing.fakeFigureSaves',1);warning('off','backtrace');warning('off','TASBE:outputfig:TestMode');warning('off','TASBE:outputfig:MakeDirectory');
+TEST_INIT=addpath('$(TESTDIR)');
 TEST=$(ADDPATH);$(TEST_INIT);success=$(TEST_RUNNER)($(RUNTESTS_ARGS));exit(~success);
 
 MATLAB_BIN=$(shell which $(MATLAB))
