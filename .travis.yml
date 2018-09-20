@@ -1,6 +1,6 @@
 # vim ft=yaml
 # travis-ci.org definition for TASBEFlowAnalytics-Tutorial build (based on MOxUnit)
-#
+# 
 # This pretends to be java because it needs GNU Octave which is not
 # available (as of April 2015)
 
