@@ -1,5 +1,4 @@
 function test_suite = test_01_flow_cytometry
-    addpath('../TASBEFlowAnalytics/');
     TASBEConfig.checkpoint('test');
     try % assignment of 'localfunctions' is necessary in Matlab >= 2016
         test_functions=localfunctions();
