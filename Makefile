@@ -10,7 +10,7 @@ PACKAGEDIR=$(CURDIR)
 TESTDIR=$(CURDIR)/tests
 ROOTDIR=$(CURDIR)/code
 
-ADDPATH=orig_dir=pwd();cd('$(PACKAGEDIR)');tasbe_set_path();cd(orig_dir)
+ADDPATH=orig_dir=pwd();cd('$(PACKAGEDIR)');cd(orig_dir)
 RMPATH=rmpath('$(PACKAGEDIR)');
 SAVEPATH=savepath();exit(0)
 
