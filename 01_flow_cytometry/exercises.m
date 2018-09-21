@@ -15,7 +15,7 @@ dosedata = '../example_assay/';
 % Examples of flow data (Fig1 to Fig4)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % pure scatter - often hard to interpret
-fcs_scatterdas([dosedata 'LacI-CAGop_C4_P3.fcs'],'PE-Tx-Red-YG-A','Pacific Blue-A',0,[0 0; 6 6],1); % Fig1
+fcs_scatter([dosedata 'LacI-CAGop_C4_P3.fcs'],'PE-Tx-Red-YG-A','Pacific Blue-A',0,[0 0; 6 6],1); % Fig1
 fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','Pacific Blue-A',0,[0 0; 6 6],1); % Fig2
 % smoothed density plot omits details but often summarizes collective better
 data1 = fcs_scatter([dosedata 'LacI-CAGop_C4_P3.fcs'],'PE-Tx-Red-YG-A','Pacific Blue-A',1,[0 0; 6 6],1); % Fig3
