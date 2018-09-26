@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % example: addpath('~/Downloads/TASBEFlowAnalytics/');
-addpath('your-path-to-analytics');
+% addpath('../TASBEFlowAnalytics/'); % input your-path-to-analytics
 % turn off sanitized filename warnings:
 warning('off','TASBE:SanitizeName');
 
@@ -49,7 +49,8 @@ sigma = std(data(:,10))
 range = -100:5:150;
 figure; % Fig12
 plot(range,histc(data(:,10),range),'b-'); hold on; 
-plot(range,numel(data(:,10))*5*normpdf(range,mu,sigma),'r--'); 
+% plot(range,numel(data(:,10))*5*normpdf(range,mu,sigma),'r--'); 
+% commented out for testing purposes, normpdf undefined in Octave
 
 % we can simulate a distribution as a sum of three terms: random (bleed) signal, autofluorescence, and read error
 % here are some arbitrary values to explore as an example:
@@ -115,7 +116,7 @@ CM = set_ERF_channel_name(CM, 'FITC-A'); % We'll explain this in the next exerci
 
 % Now let's read some files...
 raw = read_filtered_au(CM,[dosedata 'LacI-CAGop_C3_P3.fcs']);
-compensated = readfcs_compensated_au(CM,[dosedata 'LacI-CAGop_C3_P3.fcs'],0,1);
+% compensated = readfcs_compensated_au(CM,[dosedata 'LacI-CAGop_C3_P3.fcs'],0,1);
 % You should see an error: need to "resolve" the color model first! Comment
 % out above line of code and run again.
 

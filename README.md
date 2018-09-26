@@ -1,4 +1,6 @@
 # TASBE Flow Analytics Tutorial
+[![Build Status](https://travis-ci.org/TASBE/TASBEFlowAnalytics-Tutorial.svg?branch=master)](https://travis-ci.org/TASBE/TASBEFlowAnalytics-Tutorial)
+
 This is a tutorial for how to use the [TASBE Flow Analytics package](https://github.com/TASBE/TASBEFlowAnalytics).
 
 Example code in this tutorial is distributed, insofar as possible, in

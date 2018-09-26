@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % example: addpath('~/Downloads/TASBEFlowAnalytics/');
-addpath('your-path-to-analytics');
+% addpath('../TASBEFlowAnalytics/'); % input your-path-to-analytics
 % turn off sanitized filename warnings:
 warning('off','TASBE:SanitizeName');
 
@@ -75,9 +75,21 @@ data(data(:,7)>260000,7)
 channels = {};
 
 channels{1} = Channel('Pacific Blue-A', 405, 450, 50);
+channels{1} = setPrintName(channels{1}, 'EBFP2');
+channels{1} = setLineSpec(channels{1}, 'b');
+colorfiles{1} = [colordata '2012-03-12_' 'ebfp2_P3.fcs'];
+
 channels{2} = Channel('PE-Texas Red-A', 561, 610, 20);
+channels{2} = setPrintName(channels{2}, 'mKate');
+channels{2} = setLineSpec(channels{2}, 'r');
+colorfiles{2} = [colordata '2012-03-12_' 'mkate_P3.fcs'];
+
 channels{3} = Channel('FITC-A', 488, 530, 30);
-CM = ColorModel('','',channels,{{},{},{}},{}); % simplified ColorModel, more features will be introduced in future tutorials
+channels{3} = setPrintName(channels{3}, 'EYFP'); % Name to print on charts
+channels{3} = setLineSpec(channels{3}, 'y'); % Color for lines, when needed
+colorfiles{3} = [colordata '2012-03-12_' 'EYFP_P3.fcs']; % If there is only one channel, the color file is optional
+
+CM = ColorModel('','',channels,colorfiles,{}); % simplified ColorModel, more features will be introduced in future tutorials
 
 filtered = read_filtered_au(CM,[colordata '07-29-11_EYFP_P3.fcs']); % applies any filters set in ColorModel
 

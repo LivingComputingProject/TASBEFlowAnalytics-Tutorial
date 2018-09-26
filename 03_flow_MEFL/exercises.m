@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % example: addpath('~/Downloads/TASBEFlowAnalytics/');
-addpath('your-path-to-analytics');
+% addpath('../TASBEFlowAnalytics/'); % input your-path-to-analytics
 % turn off sanitized filename warnings:
 warning('off','TASBE:SanitizeName');
 
