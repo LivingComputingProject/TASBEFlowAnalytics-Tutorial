@@ -1,5 +1,5 @@
 % This file shows how to perform a batch of +/- comparisons
-TASBEConfig.checkpoint('init');
+TASBEConfig.checkpoint(TASBEConfig.checkpoints());
 
 % load the color model
 load('../template_colormodel/CM120312.mat');
