@@ -54,7 +54,7 @@ colorpairfiles = {};
 colorpairfiles{1} = {channels{1}, channels{2}, channels{3}, [stem0312 'mkate_EBFP2_EYFP_P3.fcs']};
 colorpairfiles{2} = {channels{1}, channels{3}, channels{2}, [stem0312 'mkate_EBFP2_EYFP_P3.fcs']};
 
-% Size bead files are used for processing FSC-A units into uM equivalent diameter
+% Size bead files are used for processing FSC-A units into um equivalent diameter
 % They are optional, and will not be used if size bead file is not set
 % sizebeadfile = [];
 sizebeadfile = '../example_controls/180614_PPS6K_A02.fcs';
@@ -83,7 +83,7 @@ TASBEConfig.set('sizebeads.beadModel','SpheroTech PPS-6K'); % Entry from BeadCat
 % Can also set bead channel or batch, if alternatives are available
 % Ignore all size bead data below 10^[rangeMin] as being too "smeared" with noise
 TASBEConfig.set('sizebeads.rangeMin', 2);
-CM=set_uM_channel_name(CM, 'FSC-A');
+CM=set_um_channel_name(CM, 'FSC-A');
 
 % When dealing with very strong fluorescence, use secondary channel to segment
 % TASBEConfig.set('beads.secondaryBeadChannel','PE-Tx-Red-YG-A');
