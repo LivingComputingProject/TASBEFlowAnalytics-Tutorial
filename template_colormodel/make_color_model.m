@@ -37,12 +37,12 @@ channels{3} = setPrintName(channels{3}, 'EBFP2');
 channels{3} = setLineSpec(channels{3}, 'b');
 colorfiles{3} = [stem0312 'ebfp2_P3.fcs'];
 
-% FSC and SSC channels can be added to be read unprocessed.
-%channels{4} = Channel('FSC-A', 488, 488, 10);
-%channels{4} = setPrintName(channels{4}, 'FSC');
-%channels{4} = setLineSpec(channels{4}, 'k');
-% If the name is FSC or SSC (or one of those with '-A', '-H', or '-W') it will automatically be unprocessed; otherwise, set it  
-%channels{4} = setIsUnprocessed(channels{4}), true);
+% FSC and SSC channels can be added to be read unprocessed to MEFL
+% channels{4} = Channel('FSC-A', 488, 488, 10);
+% channels{4} = setPrintName(channels{4}, 'FSC');
+% channels{4} = setLineSpec(channels{4}, 'k');
+% If the name is FSC or SSC (or one of those with '-A', '-H', or '-W') it will automatically be unprocessed; otherwise, set it 
+% channels{4} = setIsUnprocessed(channels{4}, true);
 
 
 % Multi-color controls are used for converting other colors into ERF units
@@ -54,7 +54,12 @@ colorpairfiles = {};
 colorpairfiles{1} = {channels{1}, channels{2}, channels{3}, [stem0312 'mkate_EBFP2_EYFP_P3.fcs']};
 colorpairfiles{2} = {channels{1}, channels{3}, channels{2}, [stem0312 'mkate_EBFP2_EYFP_P3.fcs']};
 
-CM = ColorModel(beadfile, blankfile, channels, colorfiles, colorpairfiles);
+% Size bead files are used for processing FSC-A units into um equivalent diameter
+% They are optional, and will not be used if size bead file is not set
+sizebeadfile = [];
+% sizebeadfile = '../example_controls/180614_PPS6K_A02.fcs';
+
+CM = ColorModel(beadfile, blankfile, channels, colorfiles, colorpairfiles, sizebeadfile);
 CM=set_translation_plot(CM, true);
 CM=set_noise_plot(CM, true);
 
@@ -72,6 +77,13 @@ TASBEConfig.set('beads.rangeMin', 2);
 CM=set_ERF_channel_name(CM, 'FITC-A');
 % Ignore channel data for ith channel if below 10^[value(i)]
 CM=set_translation_channel_min(CM,[2,2,2]);
+
+% Configuration for size beads, if used
+% TASBEConfig.set('sizebeads.beadModel','SpheroTech PPS-6K'); % Entry from BeadCatalog.xls matching your beads
+% Can also set bead channel or batch, if alternatives are available
+% Ignore all size bead data below 10^[rangeMin] as being too "smeared" with noise
+% TASBEConfig.set('sizebeads.rangeMin', 2);
+% CM=set_um_channel_name(CM, 'FSC-A');
 
 % When dealing with very strong fluorescence, use secondary channel to segment
 % TASBEConfig.set('beads.secondaryBeadChannel','PE-Tx-Red-YG-A');
