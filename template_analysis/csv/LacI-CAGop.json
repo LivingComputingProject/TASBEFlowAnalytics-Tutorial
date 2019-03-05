@@ -1,16 +1,23 @@
-[
-	3,
-	"FITC-A",
-	"PE-Tx-Red-YG-A",
-	"Pacific Blue-A",
-	"EYFP",
-	"mKate",
-	"EBFP2",
-	"ERF",
-	"ERF",
-	"ERF",
-	14,
-	"csv\/LacI-CAGop_Dox01_PointCloud.csv",
+{
+	"channels": [
+		{
+			"name": "FITC-A",
+			"print_name": "EYFP",
+			"unit": "ERF"
+		},
+		{
+			"name": "PE-Tx-Red-YG-A",
+			"print_name": "mKate",
+			"unit": "ERF"
+		},
+		{
+			"name": "Pacific Blue-A",
+			"print_name": "EBFP2",
+			"unit": "ERF"
+		}
+	],
+	"filenames": [
+		"csv\/LacI-CAGop_Dox01_PointCloud.csv",
 	"csv\/LacI-CAGop_Dox02_PointCloud.csv",
 	"csv\/LacI-CAGop_Dox05_PointCloud.csv",
 	"csv\/LacI-CAGop_Dox1_PointCloud.csv",
@@ -24,4 +31,6 @@
 	"csv\/LacI-CAGop_Dox500_PointCloud.csv",
 	"csv\/LacI-CAGop_Dox1000_PointCloud.csv",
 	"csv\/LacI-CAGop_Dox2000_PointCloud.csv"
-]
+	]
+}
+
