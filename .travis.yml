@@ -45,7 +45,7 @@ before_install:
     - make -C MOdox install
     # retrieve TASBE for running tests
     - rm -rf TASBEFlowAnalytics
-    - git clone --branch=coverney.issue415  https://github.com/TASBE/TASBEFlowAnalytics 
+    - git clone --branch=develop  https://github.com/TASBE/TASBEFlowAnalytics 
     - make -C TASBEFlowAnalytics install
     # go back to original directory
     - cd TASBEFlowAnalytics-Tutorial
