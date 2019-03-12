@@ -48,6 +48,11 @@ file_pairs = {...
 
 n_conditions = size(file_pairs,1);
 
+% Create point cloud files
+% TASBEConfig.set('flow.outputPointCloud','true');
+% TASBEConfig.set('flow.pointCloudPath','csv/');
+% TASBEConfig.set('flow.pointCloudFileType', 1);
+
 % Execute the actual analysis
 TASBEConfig.set('OutputSettings.StemName','LacI-CAGop');
 TASBEConfig.set('OutputSettings.FixedInputAxis',[1e4 1e10]);
