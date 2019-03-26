@@ -35,17 +35,17 @@ stem1011 = '../example_assay/LacI-CAGop_';
 batch_description = {...
  {'Lows';'BaseDox';{'+', '-', 'control'};
   % First set is the matching "plus" conditions
-  {0.1,  {[stem1011 'C3_P3.fcs']}; % Replicates go here, e.g., {[rep1], [rep2], [rep3]}
-   0.2,  {[stem1011 'C4_P3.fcs']}};
-  {0.1,  {[stem1011 'B3_P3.fcs']};
-   0.2,  {[stem1011 'B4_P3.fcs']}};
-  {0.1,  {[stem1011 'B9_P3.fcs']}; 
-   0.2,  {[stem1011 'B10_P3.fcs']}}};
+  {0.1,  {DataFile(0, [stem1011 'C3_P3.fcs'])}; % Replicates go here, e.g., {[rep1], [rep2], [rep3]}
+   0.2,  {DataFile(0, [stem1011 'C4_P3.fcs'])}};
+  {0.1,  {DataFile(0, [stem1011 'B3_P3.fcs'])};
+   0.2,  {DataFile(0, [stem1011 'B4_P3.fcs'])}};
+  {0.1,  {DataFile(0, [stem1011 'B9_P3.fcs'])}; 
+   0.2,  {DataFile(0, [stem1011 'B10_P3.fcs'])}}};
  {'Highs';'BaseDox';{'+', '-'};
-  {10,   {[stem1011 'C3_P3.fcs']};
-   20,   {[stem1011 'C4_P3.fcs']}};
-  {10,   {[stem1011 'B9_P3.fcs']};
-   20,   {[stem1011 'B10_P3.fcs']}}};
+  {10,   {DataFile(0, [stem1011 'C3_P3.fcs'])};
+   20,   {DataFile(0, [stem1011 'C4_P3.fcs'])}};
+  {10,   {DataFile(0, [stem1011 'B9_P3.fcs'])};
+   20,   {DataFile(0, [stem1011 'B10_P3.fcs'])}}};
  };
 
 % Execute the actual analysis
