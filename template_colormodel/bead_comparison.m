@@ -2,7 +2,7 @@ TASBEConfig.checkpoint('init');
 
 stem0312 = '../example_controls/2012-03-12_';
 
-beadfiles = {[stem0312 'Beads_P3.fcs'], [stem0312 'Beads_P3.fcs']}; % Input beadfiles to compare into the beadfiles array
+beadfiles = {DataFile(0, [stem0312 'Beads_P3.fcs']), DataFile(0, [stem0312 'Beads_P3.fcs'])}; % Input beadfiles to compare into the beadfiles array
 
 beadfile = beadfiles{1}; % A ColorModel will be built using the first beadfile
 blankfile = '';
