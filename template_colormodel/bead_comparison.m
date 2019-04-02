@@ -2,7 +2,7 @@ TASBEConfig.checkpoint('init');
 
 stem0312 = '../example_controls/2012-03-12_';
 
-beadfiles = {DataFile(0, [stem0312 'Beads_P3.fcs']), DataFile(0, [stem0312 'Beads_P3.fcs'])}; % Input beadfiles to compare into the beadfiles array
+beadfiles = {DataFile('fcs', [stem0312 'Beads_P3.fcs']), DataFile('fcs', [stem0312 'Beads_P3.fcs'])}; % Input beadfiles to compare into the beadfiles array
 
 beadfile = beadfiles{1}; % A ColorModel will be built using the first beadfile
 blankfile = '';
@@ -15,15 +15,18 @@ colorpairfiles = {};
 % Do not duplicate laser/filter information, as this may cause analysis collisions
 channels{1} = Channel('FITC-A', 488, 515, 20);
 channels{1} = setPrintName(channels{1}, 'EYFP'); % Name to print on charts
-colorfiles{1} = ''; % Can remain empty to compare bead files
+channels{1} = setLineSpec(channels{1}, 'y'); % Color for lines, when needed
+colorfiles{1} = DataFile('fcs', [stem0312 'EYFP_P3.fcs']); % can't have empty colorfiles when doing bead comparisons
 
 channels{2} = Channel('PE-Tx-Red-YG-A', 561, 610, 20);
 channels{2} = setPrintName(channels{2}, 'mKate');
-colorfiles{2} = '';
+channels{2} = setLineSpec(channels{2}, 'r');
+colorfiles{2} = DataFile('fcs', [stem0312 'mkate_P3.fcs']);
 
 channels{3} = Channel('Pacific Blue-A', 405, 450, 50);
 channels{3} = setPrintName(channels{3}, 'EBFP2');
-colorfiles{3} = '';
+channels{3} = setLineSpec(channels{3}, 'b');
+colorfiles{3} = DataFile('fcs', [stem0312 'ebfp2_P3.fcs']);
 
 CM = ColorModel(beadfile, blankfile, channels, colorfiles, colorpairfiles);
 

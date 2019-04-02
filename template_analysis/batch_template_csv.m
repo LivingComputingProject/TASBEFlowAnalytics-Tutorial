@@ -32,20 +32,20 @@ stem1011 = 'csv/LacI-CAGop_Dox';
 root1011 = '_PointCloud.csv';
 header = 'csv/LacI-CAGop.json';
 file_pairs = {...
-  'Dox 0.1',    {DataFile(1, [stem1011 '01' root1011], header)}; % Replicates go here, e.g., {[rep1], [rep2], [rep3]}
-  'Dox 0.2',    {DataFile(1, [stem1011 '02' root1011], header)};
-  'Dox 0.5',    {DataFile(1, [stem1011 '05' root1011], header)};
-  'Dox 1.0',    {DataFile(1, [stem1011 '1' root1011], header)};
-  'Dox 2.0',    {DataFile(1, [stem1011 '2' root1011], header)};
-  'Dox 5.0',    {DataFile(1, [stem1011 '5' root1011], header)};
-  'Dox 10.0',   {DataFile(1, [stem1011 '10' root1011], header)};
-  'Dox 20.0',   {DataFile(1, [stem1011 '20' root1011], header)};
-  'Dox 50.0',   {DataFile(1, [stem1011 '50' root1011], header)};
-  'Dox 100.0',  {DataFile(1, [stem1011 '100' root1011], header)};
-  'Dox 200.0',  {DataFile(1, [stem1011 '200' root1011], header)};
-  'Dox 500.0',  {DataFile(1, [stem1011 '500' root1011], header)};
-  'Dox 1000.0', {DataFile(1, [stem1011 '1000' root1011], header)};
-  'Dox 2000.0', {DataFile(1, [stem1011 '2000' root1011], header)};
+  'Dox 0.1',    {DataFile('csv', [stem1011 '01' root1011], header)}; % Replicates go here, e.g., {[rep1], [rep2], [rep3]}
+  'Dox 0.2',    {DataFile('csv', [stem1011 '02' root1011], header)};
+  'Dox 0.5',    {DataFile('csv', [stem1011 '05' root1011], header)};
+  'Dox 1.0',    {DataFile('csv', [stem1011 '1' root1011], header)};
+  'Dox 2.0',    {DataFile('csv', [stem1011 '2' root1011], header)};
+  'Dox 5.0',    {DataFile('csv', [stem1011 '5' root1011], header)};
+  'Dox 10.0',   {DataFile('csv', [stem1011 '10' root1011], header)};
+  'Dox 20.0',   {DataFile('csv', [stem1011 '20' root1011], header)};
+  'Dox 50.0',   {DataFile('csv', [stem1011 '50' root1011], header)};
+  'Dox 100.0',  {DataFile('csv', [stem1011 '100' root1011], header)};
+  'Dox 200.0',  {DataFile('csv', [stem1011 '200' root1011], header)};
+  'Dox 500.0',  {DataFile('csv', [stem1011 '500' root1011], header)};
+  'Dox 1000.0', {DataFile('csv', [stem1011 '1000' root1011], header)};
+  'Dox 2000.0', {DataFile('csv', [stem1011 '2000' root1011], header)};
   };
 
 n_conditions = size(file_pairs,1);
