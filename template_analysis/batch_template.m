@@ -30,20 +30,20 @@ AP=setUseAutoFluorescence(AP,false');
 % Make a map of condition names to file sets
 stem1011 = '../example_assay/LacI-CAGop_';
 file_pairs = {...
-  'Dox 0.1',    {[stem1011 'B3_P3.fcs']}; % Replicates go here, e.g., {[rep1], [rep2], [rep3]}
-  'Dox 0.2',    {[stem1011 'B4_P3.fcs']};
-  'Dox 0.5',    {[stem1011 'B5_P3.fcs']};
-  'Dox 1.0',    {[stem1011 'B6_P3.fcs']};
-  'Dox 2.0',    {[stem1011 'B7_P3.fcs']};
-  'Dox 5.0',    {[stem1011 'B8_P3.fcs']};
-  'Dox 10.0',   {[stem1011 'B9_P3.fcs']};
-  'Dox 20.0',   {[stem1011 'B10_P3.fcs']};
-  'Dox 50.0',   {[stem1011 'B11_P3.fcs']};
-  'Dox 100.0',  {[stem1011 'B12_P3.fcs']};
-  'Dox 200.0',  {[stem1011 'C1_P3.fcs']};
-  'Dox 500.0',  {[stem1011 'C2_P3.fcs']};
-  'Dox 1000.0', {[stem1011 'C3_P3.fcs']};
-  'Dox 2000.0', {[stem1011 'C4_P3.fcs']};
+  'Dox 0.1',    {DataFile('fcs', [stem1011 'B3_P3.fcs'])}; % Replicates go here, e.g., {[rep1], [rep2], [rep3]}
+  'Dox 0.2',    {DataFile('fcs', [stem1011 'B4_P3.fcs'])};
+  'Dox 0.5',    {DataFile('fcs', [stem1011 'B5_P3.fcs'])};
+  'Dox 1.0',    {DataFile('fcs', [stem1011 'B6_P3.fcs'])};
+  'Dox 2.0',    {DataFile('fcs', [stem1011 'B7_P3.fcs'])};
+  'Dox 5.0',    {DataFile('fcs', [stem1011 'B8_P3.fcs'])};
+  'Dox 10.0',   {DataFile('fcs', [stem1011 'B9_P3.fcs'])};
+  'Dox 20.0',   {DataFile('fcs', [stem1011 'B10_P3.fcs'])};
+  'Dox 50.0',   {DataFile('fcs', [stem1011 'B11_P3.fcs'])};
+  'Dox 100.0',  {DataFile('fcs', [stem1011 'B12_P3.fcs'])};
+  'Dox 200.0',  {DataFile('fcs', [stem1011 'C1_P3.fcs'])};
+  'Dox 500.0',  {DataFile('fcs', [stem1011 'C2_P3.fcs'])};
+  'Dox 1000.0', {DataFile('fcs', [stem1011 'C3_P3.fcs'])};
+  'Dox 2000.0', {DataFile('fcs', [stem1011 'C4_P3.fcs'])};
   };
 
 n_conditions = size(file_pairs,1);

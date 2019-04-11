@@ -15,11 +15,11 @@ dosedata = '../example_assay/';
 % Examples of flow data (Fig1 to Fig4)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % pure scatter - often hard to interpret
-fcs_scatter([dosedata 'LacI-CAGop_C4_P3.fcs'],'PE-Tx-Red-YG-A','Pacific Blue-A',0,[0 0; 6 6],1); % Fig1
-fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','Pacific Blue-A',0,[0 0; 6 6],1); % Fig2
+fcs_scatter(DataFile('fcs', [dosedata 'LacI-CAGop_C4_P3.fcs']),'PE-Tx-Red-YG-A','Pacific Blue-A',0,[0 0; 6 6],1); % Fig1
+fcs_scatter(DataFile('fcs', [colordata '07-29-11_EYFP_P3.fcs']),'FITC-A','Pacific Blue-A',0,[0 0; 6 6],1); % Fig2
 % smoothed density plot omits details but often summarizes collective better
-data1 = fcs_scatter([dosedata 'LacI-CAGop_C4_P3.fcs'],'PE-Tx-Red-YG-A','Pacific Blue-A',1,[0 0; 6 6],1); % Fig3
-data2 = fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','Pacific Blue-A',1,[0 0; 6 6],1); % Fig4
+data1 = fcs_scatter(DataFile('fcs', [dosedata 'LacI-CAGop_C4_P3.fcs']),'PE-Tx-Red-YG-A','Pacific Blue-A',1,[0 0; 6 6],1); % Fig3
+data2 = fcs_scatter(DataFile('fcs', [colordata '07-29-11_EYFP_P3.fcs']),'FITC-A','Pacific Blue-A',1,[0 0; 6 6],1); % Fig4
 
 % Things to notice:
 % - look at the size of data1 and data2: there's a *LOT* of points in these samples
@@ -91,10 +91,10 @@ colorfiles{3} = [colordata '2012-03-12_' 'EYFP_P3.fcs']; % If there is only one 
 
 CM = ColorModel('','',channels,colorfiles,{}); % simplified ColorModel, more features will be introduced in future tutorials
 
-filtered = read_filtered_au(CM,[colordata '07-29-11_EYFP_P3.fcs']); % applies any filters set in ColorModel
+filtered = read_filtered_au(CM,DataFile('fcs', [colordata '07-29-11_EYFP_P3.fcs'])); % applies any filters set in ColorModel
 
 CM = set_dequantization(CM,true); % dequantization adds noise to spread the data out more, especially useful at low levels
-[dequantized hdr] = read_filtered_au(CM,[dosedata 'LacI-CAGop_C4_P3.fcs']);
+[dequantized hdr] = read_filtered_au(CM,DataFile('fcs', [dosedata 'LacI-CAGop_C4_P3.fcs']));
 xc = dequantized(:,10); yc = dequantized(:,11);
 pos = xc>0 & yc>0;
 figure; smoothhist2D(log10([xc(pos) yc(pos)]),10,[200, 200],[],'image',[0 0; 6 6]); % Fig5
