@@ -16,21 +16,21 @@ dosedata = '../example_assay/';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Let's look at some single-color positive controls:
 % no significant spectral overlap
-fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','Pacific Blue-A',1,[0 0; 6 6],1); % Fig1
+fcs_scatter(DataFile('fcs', [colordata '07-29-11_EYFP_P3.fcs']),'FITC-A','Pacific Blue-A',1,[0 0; 6 6],1); % Fig1
 % minor spectral overlap
-fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','PE-TxRed YG-A',1,[0 0; 6 6],1); % Fig2
+fcs_scatter(DataFile('fcs', [colordata '07-29-11_EYFP_P3.fcs']),'FITC-A','PE-TxRed YG-A',1,[0 0; 6 6],1); % Fig2
 % significant spectral overlap
-fcs_scatter([colordata '07-29-11_mkate_P3.fcs'],'PE-TxRed YG-A','FITC-A',1,[0 0; 6 6],1); % Fig3
-fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','AmCyan-A',1,[0 0; 6 6],1); % Fig4
+fcs_scatter(DataFile('fcs', [colordata '07-29-11_mkate_P3.fcs']),'PE-TxRed YG-A','FITC-A',1,[0 0; 6 6],1); % Fig3
+fcs_scatter(DataFile('fcs', [colordata '07-29-11_EYFP_P3.fcs']),'FITC-A','AmCyan-A',1,[0 0; 6 6],1); % Fig4
 % massive spectral overlap
-fcs_scatter([colordata '07-29-11_EBFP2_P3.fcs'],'Pacific Blue-A','AmCyan-A',1,[0 0; 6 6],1); % Fig5
+fcs_scatter(DataFile('fcs', [colordata '07-29-11_EBFP2_P3.fcs']),'Pacific Blue-A','AmCyan-A',1,[0 0; 6 6],1); % Fig5
 
 % let's look at some of these without blending (plot 'density' set to 0):
-fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','PE-TxRed YG-A',0,[0 0; 6 6],1); % Fig6
-fcs_scatter([colordata '07-29-11_EYFP_P3.fcs'],'FITC-A','AmCyan-A',0,[0 0; 6 6],1); % Fig7
-fcs_scatter([colordata '07-29-11_EBFP2_P3.fcs'],'Pacific Blue-A','AmCyan-A',0,[0 0; 6 6],1); % Fig8
+fcs_scatter(DataFile('fcs', [colordata '07-29-11_EYFP_P3.fcs']),'FITC-A','PE-TxRed YG-A',0,[0 0; 6 6],1); % Fig6
+fcs_scatter(DataFile('fcs', [colordata '07-29-11_EYFP_P3.fcs']),'FITC-A','AmCyan-A',0,[0 0; 6 6],1); % Fig7
+fcs_scatter(DataFile('fcs', [colordata '07-29-11_EBFP2_P3.fcs']),'Pacific Blue-A','AmCyan-A',0,[0 0; 6 6],1); % Fig8
 % notice that these are extremely tight compared to a two-color experiment:
-fcs_scatter([colordata '2012-03-12_EBFP2_EYFP_P3.fcs'],'Pacific Blue-A','FITC-A',0,[0 0; 6 6],1); % Fig9
+fcs_scatter(DataFile('fcs', [colordata '2012-03-12_EBFP2_EYFP_P3.fcs']),'Pacific Blue-A','FITC-A',0,[0 0; 6 6],1); % Fig9
 
 % What does autofluorescence look like?
 [raw hdr data] = fca_readfcs([colordata '07-29-11_blank_P3.fcs']);
@@ -42,8 +42,8 @@ figure; hist(data(:,10)+(rand(size(data(:,10)))-0.5),100); % Fig11
 % of autofluorescence and instrument error.  There is not currently any elegant way of separating these.
 
 % fit to a gaussian model:
-mu = mean(data(:,10))
-sigma = std(data(:,10))
+mu = mean(data(:,10));
+sigma = std(data(:,10));
 
 % Notice that the fit to a gaussian is pretty good:
 range = -100:5:150;
@@ -115,7 +115,7 @@ TASBEConfig.set('beads.beadBatch','Lot AA01, AA02, AA03, AA04, AB01, AB02, AC01,
 CM = set_ERF_channel_name(CM, 'FITC-A'); % We'll explain this in the next exercise
 
 % Now let's read some files...
-raw = read_filtered_au(CM,[dosedata 'LacI-CAGop_C3_P3.fcs']);
+raw = read_filtered_au(CM,DataFile('fcs', [dosedata 'LacI-CAGop_C3_P3.fcs']));
 % compensated = readfcs_compensated_au(CM,[dosedata 'LacI-CAGop_C3_P3.fcs'],0,1);
 % You should see an error: need to "resolve" the color model first! Comment
 % out above line of code and run again.
@@ -160,7 +160,7 @@ CM = resolve(CM); %resolve computes a ColorModel from all of the pointers that a
 % even when it can be compensated for.
 
 
-compensated = readfcs_compensated_au(CM,[dosedata 'LacI-CAGop_C3_P3.fcs'],0,1);
+compensated = readfcs_compensated_au(CM,DataFile('fcs', [dosedata 'LacI-CAGop_C3_P3.fcs']),0,1);
 % The last two arguments are:
 % 1) Whether to add autofluorescence back in after reading (generally not done)
 % 2) Whether to map all values <= 0 to 1 (which is zero on the log scale)

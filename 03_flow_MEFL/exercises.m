@@ -15,9 +15,9 @@ dosedata = '../example_assay/';
 % Calibration beads (Plots folder and Fig1 to Fig4):
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Let's look at an example of SpheroTech RCP-30-5A calibration beads:
-fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'Pacific Blue-A','PE-Tx-Red-YG-A',1,[0 0; 6 6],1); % Fig1
+fcs_scatter(DataFile('fcs', [colordata '2012-03-12_Beads_P3.fcs']),'Pacific Blue-A','PE-Tx-Red-YG-A',1,[0 0; 6 6],1); % Fig1
 % and without blending (density is 0)...
-fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'Pacific Blue-A','PE-Tx-Red-YG-A',0,[0 0; 6 6],1); % Fig2
+fcs_scatter(DataFile('fcs', [colordata '2012-03-12_Beads_P3.fcs']),'Pacific Blue-A','PE-Tx-Red-YG-A',0,[0 0; 6 6],1); % Fig2
 % Notice that there is a nice, nearly linear sequence of 5 peaks
 % the last one (bottom left) is pretty blurry, as it comes down into
 % autofluorescence (failed transfection)
@@ -31,8 +31,8 @@ fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'Pacific Blue-A','PE-Tx-Red-YG
 % down near the bottom instead.
 
 % Let's take a look at a different pair of channels:
-fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'PE-Tx-Red-YG-A','FITC-A',1,[0 0; 6 6],1); % Fig3
-fcs_scatter([colordata '2012-03-12_Beads_P3.fcs'],'PE-Tx-Red-YG-A','FITC-A',0,[0 0; 6 6],1); % Fig4
+fcs_scatter(DataFile('fcs', [colordata '2012-03-12_Beads_P3.fcs']),'PE-Tx-Red-YG-A','FITC-A',1,[0 0; 6 6],1); % Fig3
+fcs_scatter(DataFile('fcs', [colordata '2012-03-12_Beads_P3.fcs']),'PE-Tx-Red-YG-A','FITC-A',0,[0 0; 6 6],1); % Fig4
 % Notice that the relationship of the peaks is not linear any more.
 % This is because the FITC peaks are much lower, and are blurring into autofluorescence
 % Thus, we need to calibrate using only peaks far from autofluorescence.
@@ -147,9 +147,9 @@ CM = resolve(CM); % plots2
 
 % We recommend 3 colors as best practices:
 % Let's look at such a multi-color control file:
-fcs_scatter([colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs'],'FITC-A','Pacific Blue-A',1,[0 0; 6 6],1); % Fig5
+fcs_scatter(DataFile('fcs', [colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs']),'FITC-A','Pacific Blue-A',1,[0 0; 6 6],1); % Fig5
 % and without blending...
-fcs_scatter([colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs'],'FITC-A','Pacific Blue-A',0,[0 0; 6 6],1); % Fig6
+fcs_scatter(DataFile('fcs', [colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs']),'FITC-A','Pacific Blue-A',0,[0 0; 6 6],1); % Fig6
 % Notice that it's only nicely linear for the higher levels, 
 % and that it's much smearier than our compensation controls
 % The first is what set_translation_channel_min is for

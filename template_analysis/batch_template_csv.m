@@ -30,21 +30,22 @@ AP=setUseAutoFluorescence(AP,false');
 % Make a map of condition names to file sets
 stem1011 = 'csv/LacI-CAGop_Dox';
 root1011 = '_PointCloud.csv';
+header = 'csv/LacI-CAGop.json';
 file_pairs = {...
-  'Dox 0.1',    {[stem1011 '01' root1011]}; % Replicates go here, e.g., {[rep1], [rep2], [rep3]}
-  'Dox 0.2',    {[stem1011 '02' root1011]};
-  'Dox 0.5',    {[stem1011 '05' root1011]};
-  'Dox 1.0',    {[stem1011 '1' root1011]};
-  'Dox 2.0',    {[stem1011 '2' root1011]};
-  'Dox 5.0',    {[stem1011 '5' root1011]};
-  'Dox 10.0',   {[stem1011 '10' root1011]};
-  'Dox 20.0',   {[stem1011 '20' root1011]};
-  'Dox 50.0',   {[stem1011 '50' root1011]};
-  'Dox 100.0',  {[stem1011 '100' root1011]};
-  'Dox 200.0',  {[stem1011 '200' root1011]};
-  'Dox 500.0',  {[stem1011 '500' root1011]};
-  'Dox 1000.0', {[stem1011 '1000' root1011]};
-  'Dox 2000.0', {[stem1011 '2000' root1011]};
+  'Dox 0.1',    {DataFile('csv', [stem1011 '01' root1011], header)}; % Replicates go here, e.g., {[rep1], [rep2], [rep3]}
+  'Dox 0.2',    {DataFile('csv', [stem1011 '02' root1011], header)};
+  'Dox 0.5',    {DataFile('csv', [stem1011 '05' root1011], header)};
+  'Dox 1.0',    {DataFile('csv', [stem1011 '1' root1011], header)};
+  'Dox 2.0',    {DataFile('csv', [stem1011 '2' root1011], header)};
+  'Dox 5.0',    {DataFile('csv', [stem1011 '5' root1011], header)};
+  'Dox 10.0',   {DataFile('csv', [stem1011 '10' root1011], header)};
+  'Dox 20.0',   {DataFile('csv', [stem1011 '20' root1011], header)};
+  'Dox 50.0',   {DataFile('csv', [stem1011 '50' root1011], header)};
+  'Dox 100.0',  {DataFile('csv', [stem1011 '100' root1011], header)};
+  'Dox 200.0',  {DataFile('csv', [stem1011 '200' root1011], header)};
+  'Dox 500.0',  {DataFile('csv', [stem1011 '500' root1011], header)};
+  'Dox 1000.0', {DataFile('csv', [stem1011 '1000' root1011], header)};
+  'Dox 2000.0', {DataFile('csv', [stem1011 '2000' root1011], header)};
   };
 
 n_conditions = size(file_pairs,1);
@@ -52,8 +53,6 @@ n_conditions = size(file_pairs,1);
 % Execute the actual analysis
 TASBEConfig.set('OutputSettings.StemName','LacI-CAGop');
 TASBEConfig.set('OutputSettings.FixedInputAxis',[1e4 1e10]);
-% Set CSVReaderHeader (temporary feature)
-TASBEConfig.set('flow.defaultCSVReadHeader','csv/LacI-CAGop.json');
 % Generate point cloud csv files
 %TASBEConfig.set('flow.outputPointCloud', true);
 [results, sampleresults] = per_color_constitutive_analysis(CM,file_pairs,{'EYFP','mKate', 'EBFP2'},AP);
