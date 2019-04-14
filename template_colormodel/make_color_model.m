@@ -16,7 +16,7 @@ AGP = AutogateParameters();
 % non-cell or clump component.  More complex distributions may need more.
 %AGP.k_components = 2;
 %AGP.selected_components = [1];
-autogate = GMMGating(blankfile,AGP,'plots');
+autogate = GMMGating(blankfile,AGP);
 
 % Create one channel / colorfile pair for each color
 channels = {}; colorfiles = {};
