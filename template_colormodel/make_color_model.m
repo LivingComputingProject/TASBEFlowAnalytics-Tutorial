@@ -7,16 +7,14 @@ beadfile = DataFile('fcs', [stem0312 'Beads_P3.fcs']);
 blankfile = DataFile('fcs', [stem0312 'blank_P3.fcs']);
 
 % Autodetect gating with an N-dimensional gaussian-mixture-model
-AGP = AutogateParameters();
-% Adjust AGP values if needed.  The most common adjustments are below:
-% These are the most common values to adjust:
-% Match t
-%AGP.channel_names = {'FSC-A','SSC-A','FSC-H','FSC-W','SSC-H','SSC-W'};
+% Adjust gating values if needed.  The most common adjustments are below:
+% Channels to be used:
+%TASBEConfig.set('gating.channelNames') = {'FSC-A','SSC-A','FSC-H','FSC-W','SSC-H','SSC-W'};
 % Typically two components: one tight single-cell component, one diffuse 
 % non-cell or clump component.  More complex distributions may need more.
-%AGP.k_components = 2;
-%AGP.selected_components = [1];
-autogate = GMMGating(blankfile,AGP);
+%TASBEConfig.set('gating.kComponents') = 2;
+%TASBEConfig.set('selectedComponents') = [1];
+autogate = GMMGating(blankfile);
 
 % Create one channel / colorfile pair for each color
 channels = {}; colorfiles = {};
