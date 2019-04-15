@@ -7,16 +7,14 @@ beadfile = DataFile('fcs', [stem0312 'Beads_P3.fcs']);
 blankfile = DataFile('fcs', [stem0312 'blank_P3.fcs']);
 
 % Autodetect gating with an N-dimensional gaussian-mixture-model
-AGP = AutogateParameters();
-% Adjust AGP values if needed.  The most common adjustments are below:
-% These are the most common values to adjust:
-% Match t
-%AGP.channel_names = {'FSC-A','SSC-A','FSC-H','FSC-W','SSC-H','SSC-W'};
+% Adjust gating values if needed.  The most common adjustments are below:
+% Channels to be used:
+%TASBEConfig.set('gating.channelNames') = {'FSC-A','SSC-A','FSC-H','FSC-W','SSC-H','SSC-W'};
 % Typically two components: one tight single-cell component, one diffuse 
 % non-cell or clump component.  More complex distributions may need more.
-%AGP.k_components = 2;
-%AGP.selected_components = [1];
-autogate = GMMGating(blankfile,AGP,'plots');
+%TASBEConfig.set('gating.kComponents') = 2;
+%TASBEConfig.set('selectedComponents') = [1];
+autogate = GMMGating(blankfile);
 
 % Create one channel / colorfile pair for each color
 channels = {}; colorfiles = {};
@@ -60,8 +58,6 @@ sizebeadfile = [];
 % sizebeadfile = '../example_controls/180614_PPS6K_A02.fcs';
 
 CM = ColorModel(beadfile, blankfile, channels, colorfiles, colorpairfiles, sizebeadfile);
-CM=set_translation_plot(CM, true);
-CM=set_noise_plot(CM, true);
 
 TASBEConfig.set('beads.beadModel','SpheroTech RCP-30-5A'); % Entry from BeadCatalog.xls matching your beads
 TASBEConfig.set('beads.beadBatch','Lot AA01, AA02, AA03, AA04, AB01, AB02, AC01, GAA01-R'); % Entry from BeadCatalog.xls containing your lot
@@ -76,7 +72,7 @@ TASBEConfig.set('beads.rangeMin', 2);
 %TASBEConfig.set('beads.peakThreshold', 200);
 CM=set_ERF_channel_name(CM, 'FITC-A');
 % Ignore channel data for ith channel if below 10^[value(i)]
-CM=set_translation_channel_min(CM,[2,2,2]);
+TASBEConfig.set('colortranslation.channelMinimum',[2,2,2]);
 
 % Configuration for size beads, if used
 % TASBEConfig.set('sizebeads.beadModel','SpheroTech PPS-6K'); % Entry from BeadCatalog.xls matching your beads
