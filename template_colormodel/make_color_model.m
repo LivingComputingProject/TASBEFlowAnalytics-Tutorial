@@ -13,7 +13,7 @@ blankfile = DataFile('fcs', [stem0312 'blank_P3.fcs']);
 % Typically two components: one tight single-cell component, one diffuse 
 % non-cell or clump component.  More complex distributions may need more.
 %TASBEConfig.set('gating.kComponents') = 2;
-%TASBEConfig.set('selectedComponents') = [1];
+%TASBEConfig.set('gating.selectedComponents') = [1];
 autogate = GMMGating(blankfile);
 
 % Create one channel / colorfile pair for each color
