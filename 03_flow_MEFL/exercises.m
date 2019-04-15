@@ -72,8 +72,6 @@ colorpairfiles{1} = {channels{1}, channels{3}, channels{2}, [colordata '2012-03-
 colorpairfiles{2} = {channels{2}, channels{3}, channels{1}, [colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs']};
 colorpairfiles{3} = {channels{2}, channels{1}, channels{3}, [colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs']};
 CM = ColorModel(beadfile, blankfile, channels, colorfiles, colorpairfiles);
-CM=set_translation_plot(CM, true);
-CM=set_noise_plot(CM, true);
 
 TASBEConfig.set('beads.beadModel','SpheroTech RCP-30-5A'); % Entry from BeadCatalog.xls matching your beads
 TASBEConfig.set('beads.beadBatch','Lot AA01, AA02, AA03, AA04, AB01, AB02, AC01, GAA01-R'); % Entry from BeadCatalog.xls containing your lot
@@ -86,7 +84,6 @@ CM = set_ERF_channel_name(CM, 'FITC-A');
 CM=set_dequantization(CM, 1); % important at low levels
 TASBEConfig.set('beads.rangeMin', 1); % Don't consider beads less than this 10^1 amount
 % Things we'll talk about in the next section...
-CM=set_translation_plot(CM, true); 
 TASBEConfig.set('colortranslation.channelMinimum',[2,2,2]);
 % and build it!
 CM = resolve(CM); % plots1
