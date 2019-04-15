@@ -87,7 +87,7 @@ CM=set_dequantization(CM, 1); % important at low levels
 TASBEConfig.set('beads.rangeMin', 1); % Don't consider beads less than this 10^1 amount
 % Things we'll talk about in the next section...
 CM=set_translation_plot(CM, true); 
-CM=set_translation_channel_min(CM,[2,2,2]);
+TASBEConfig.set('colortranslation.channelMinimum',[2,2,2]);
 % and build it!
 CM = resolve(CM); % plots1
 
@@ -152,7 +152,7 @@ fcs_scatter(DataFile('fcs', [colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs']),'F
 fcs_scatter(DataFile('fcs', [colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs']),'FITC-A','Pacific Blue-A',0,[0 0; 6 6],1); % Fig6
 % Notice that it's only nicely linear for the higher levels, 
 % and that it's much smearier than our compensation controls
-% The first is what set_translation_channel_min is for
+% The first is what setting colortranslation.channelMinimum is for
 
 % The way we partition is controlled by the colorpairfiles configuration:
 % colorpairfiles{1} = {channels{1}, channels{3}, channels{2}, [colordata '2012-03-12_mkate_EBFP2_EYFP_P3.fcs']};

@@ -58,8 +58,6 @@ sizebeadfile = [];
 % sizebeadfile = '../example_controls/180614_PPS6K_A02.fcs';
 
 CM = ColorModel(beadfile, blankfile, channels, colorfiles, colorpairfiles, sizebeadfile);
-CM=set_translation_plot(CM, true);
-CM=set_noise_plot(CM, true);
 
 TASBEConfig.set('beads.beadModel','SpheroTech RCP-30-5A'); % Entry from BeadCatalog.xls matching your beads
 TASBEConfig.set('beads.beadBatch','Lot AA01, AA02, AA03, AA04, AB01, AB02, AC01, GAA01-R'); % Entry from BeadCatalog.xls containing your lot
@@ -74,7 +72,7 @@ TASBEConfig.set('beads.rangeMin', 2);
 %TASBEConfig.set('beads.peakThreshold', 200);
 CM=set_ERF_channel_name(CM, 'FITC-A');
 % Ignore channel data for ith channel if below 10^[value(i)]
-CM=set_translation_channel_min(CM,[2,2,2]);
+TASBEConfig.set('colortranslation.channelMinimum',[2,2,2]);
 
 % Configuration for size beads, if used
 % TASBEConfig.set('sizebeads.beadModel','SpheroTech PPS-6K'); % Entry from BeadCatalog.xls matching your beads
