@@ -9,11 +9,11 @@ blankfile = DataFile('fcs', [stem0312 'blank_P3.fcs']);
 % Autodetect gating with an N-dimensional gaussian-mixture-model
 % Adjust gating values if needed.  The most common adjustments are below:
 % Channels to be used:
-%TASBEConfig.set('gating.channelNames') = {'FSC-A','SSC-A','FSC-H','FSC-W','SSC-H','SSC-W'};
+% TASBEConfig.set('gating.channelNames',{'FSC-A','SSC-A','FSC-H','FSC-W','SSC-H','SSC-W'});
 % Typically two components: one tight single-cell component, one diffuse 
 % non-cell or clump component.  More complex distributions may need more.
-%TASBEConfig.set('gating.kComponents') = 2;
-%TASBEConfig.set('gating.selectedComponents') = [1];
+%TASBEConfig.set('gating.kComponents',2);
+%TASBEConfig.set('gating.selectedComponents',[1]);
 autogate = GMMGating(blankfile);
 
 % Create one channel / colorfile pair for each color
