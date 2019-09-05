@@ -6,6 +6,8 @@
 
 language: java
 
+services:
+  - xvfb
 cache:
   - apt
 env:
