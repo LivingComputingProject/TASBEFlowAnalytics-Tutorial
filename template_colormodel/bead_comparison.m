@@ -1,4 +1,4 @@
-TASBEConfig.checkpoint('init');
+TASBEConfig.checkpoint(TASBEConfig.checkpoints());
 
 stem0312 = '../example_controls/2012-03-12_';
 
