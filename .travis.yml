@@ -10,6 +10,10 @@ services:
   - xvfb
 cache:
   - apt
+addons:
+  apt:
+    packages:
+      - ghostscript
 env:
  global:
     - OCTAVE=octave
