@@ -6,8 +6,15 @@
 
 language: java
 
+services:
+  - xvfb
 cache:
   - apt
+addons:
+  apt:
+    packages:
+      - ghostscript
+      - pstoedit
 env:
  global:
     - OCTAVE=octave
