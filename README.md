@@ -39,3 +39,6 @@ This material is optional, and is intended to help the user understand better ho
 * 01_flow_cytometry: How Flow Cytometry Works
 * 02_flow_compensation: Autofluorescence and Compensation in Cells
 * 03_flow_MEFL: From Arbitrary to Absolute Units
+
+## Excel Interface
+For information on how to use the excel interface, reference the [Excel README](https://github.com/TASBE/TASBEFlowAnalytics-Tutorial/blob/coverney.issue481/Excel_README.md). 
