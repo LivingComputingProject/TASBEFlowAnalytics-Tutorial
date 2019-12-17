@@ -4,7 +4,7 @@ This user guide contains information on how to set up the Excel interface in mac
 ### Setting up AppleScriptTask
 Many built-in VBA commands don't work in macOS. We can work around this problem by using AppleScript. Microsoft has an "AppleScriptTask" command that accesses and runs an AppleScript file located outside the sandboxed app, which means that we need to have a separate script file that is located in a specified location. You can set this up by executing the following steps
 
-1. Download the `RunMatlab.scpt` file from [here](/RunMatlab.scpt)
+1. Download the `RunMatlab.scpt` file from [here](https://github.com/TASBE/TASBEFlowAnalytics-Tutorial/raw/master/RunMatlab.scpt) or use the copy in this directory.
 2. Open a Finder Window and click **Go** in the Finder menu bar
 3. Hold the **Alt** key and click **Library**
 4. Click **Application Scripts** (if it doesn't exist, create this folder)
@@ -16,6 +16,6 @@ Many built-in VBA commands don't work in macOS. We can work around this problem 
 ### Running Analyses
 Now, you are almost ready to use the run buttons in the interface. Just make sure that you have installed TASBE and are not just running it from the directory. It is important to note that the **cancel buttons don't work in macOS**. Lastly, whenever Excel needs to access a particular file or folder, a dialog box will pop up and you will have to manually press the **Grant Access** button. An example of the dialog box is displayed below.
 
-![grant access dialog box](/grant_access.png)
+![grant access dialog box](./grant_access.png)
 
 **Note:** Sometimes, Excel could crash depending on what sorts of tasks you do while the session log is updating. More features will be created in the future to combat this problem.   
