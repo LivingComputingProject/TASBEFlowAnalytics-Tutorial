@@ -1,1 +1,0 @@
-A placeholder to make sure the plots directory is here when checked out
